@@ -1,0 +1,7 @@
+{
+  "name": "stEngineering",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "vue"
+}
