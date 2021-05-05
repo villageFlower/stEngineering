@@ -3,7 +3,7 @@
     <ion-header :translucent="true">
       <ion-toolbar>
         <ion-buttons slot="start">
-          <ion-menu-button menu="custom"></ion-menu-button>
+          <ion-menu-button menu="custom"></ion-menu-button>Menu
         </ion-buttons>
 
         <ion-title
@@ -270,11 +270,11 @@
           </ion-col>
 
           <div v-if="item.hasReject == true" style="width: 100%">
-            <ion-row>
+            <ion-row                   v-for="(reject, reject_index) in item.rejected"
+                  :key="reject_index">
               <ion-col size="10" class="reject-box">
                 <ion-grid
-                  v-for="(reject, reject_index) in item.rejected"
-                  :key="reject_index"
+
                   style="
                     --ion-grid-columns: 10;
                     --ion-grid-column-padding: 1px;
@@ -422,7 +422,7 @@
                               "
                               expand="full"
                               color="success"
-                              @click="takePhoto()"
+                              @click="takePhoto(item_index,reject_index)"
                             >
                               take photo
                             </ion-button>
@@ -434,7 +434,7 @@
                 </ion-grid>
               </ion-col>
               <ion-col class="reject-box" style="padding-top:3vh;">
-                <ion-img v-if="photo" :src="photo"></ion-img>
+                <ion-img v-if="item.finalRejected[reject_index].photo" :src="item.finalRejected[reject_index].photo"></ion-img>
               </ion-col>
             </ion-row>
           </div>
@@ -519,22 +519,9 @@ export default defineComponent({
       cssClass: "my-custom-interface",
     };
 
-    const imageSrc: any = ref("");
-    const takePhoto = async (itemIndex: any, elementIndex: any) => {
-      const image = await Camera.getPhoto({
-        quality: 90,
-        allowEditing: true,
-        resultType: CameraResultType.Uri,
-      });
-      imageSrc.value = image.webPath;
-      
-      console.log(imageSrc);
-    };
     return {
       options,
       photos,
-      photo: imageSrc,
-      takePhoto,
       camera,
       trash,
       close,
@@ -566,6 +553,15 @@ export default defineComponent({
     };
   },
   methods: {
+    async takePhoto( itemIndex: any, rejectIndex: any){
+      const image = await Camera.getPhoto({
+        quality: 90,
+        allowEditing: true,
+        resultType: CameraResultType.Uri,
+      });
+      this.checkItems[itemIndex].finalRejected[rejectIndex].photo =  image.webPath
+      console.log(this.checkItems[itemIndex])
+    },
     clickSave() {
       const key = this.generateKey(15);
 

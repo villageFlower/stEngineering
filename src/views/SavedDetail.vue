@@ -3,7 +3,7 @@
     <ion-header :translucent="true">
       <ion-toolbar>
         <ion-buttons slot="start">
-          <ion-back-button @click="() => router.push('/saved')"></ion-back-button>
+          <ion-menu-button menu="custom"></ion-menu-button>
         </ion-buttons>
 
         <ion-title
@@ -15,15 +15,15 @@
             padding-top: 20px;
             padding-bottom: 20px;
           "
-          >STEDAS e-QSI (Saved)</ion-title
+          >STEDAS e-QSI</ion-title
         >
       </ion-toolbar>
     </ion-header>
 
-    <ion-content :fullscreen="true">
+    <ion-content :fullscreen="true" ref="content">
       <ion-grid>
         <ion-row>
-          <ion-col col-12 style="background-color: #ffc409">
+          <ion-col col-12 class="section-title">
             <ion-text style="font-weight: bold"
               >Section A : Surveillance Details</ion-text
             >
@@ -167,7 +167,7 @@
             <ion-text>Date of Inspection :</ion-text>
           </ion-col>
           <ion-col>
-            <ion-text style="padding-left: 16px; font-size: 1.5vw">{{
+            <ion-text style="padding-left: 16px; font-size: 1.2vw">{{
               currentDate
             }}</ion-text>
           </ion-col>
@@ -183,7 +183,7 @@
         v-if="showSectionB"
       >
         <ion-row>
-          <ion-col col-12 style="background-color: #ffc409">
+          <ion-col col-12 class="section-title">
             <ion-text style="font-weight: bold">Section B : Checklist</ion-text>
           </ion-col>
         </ion-row>
@@ -268,162 +268,186 @@
               </ion-row>
             </ion-grid>
           </ion-col>
-          <div v-if="item.hasReject == true" style="width: 100%">
-            <ion-grid
-              v-for="(reject, reject_index) in item.rejected"
-              :key="reject_index"
-              style="
-                padding-left: 8.3vw;
-                padding-right: 8.3vw;
-                --ion-grid-columns: 10;
-                --ion-grid-column-padding: 1px;
-                padding-top: 3vh;
-                padding-bottom: 3vh;
-              "
-            >
-              <ion-row style="background-color: red">
-                <ion-col size="4" style="text-align: center">
-                  <ion-text style="color: white">Rejected</ion-text>
-                </ion-col>
-                <ion-col size="2">
-                  <ion-text style="color: white">Sub-category</ion-text>
-                </ion-col>
-                <ion-col size="4">
-                  <ion-text style="color: white">Most Probable Cause</ion-text>
-                </ion-col>
-              </ion-row>
 
-              <ion-row>
-                <ion-col size="4">
-                  <ion-text>{{ reject.name }}</ion-text>
-                </ion-col>
-                <ion-col size="2">
-                  <ion-select
-                    interface="action-sheet"
-                    :value="item.finalRejected[reject_index].subCategory"
-                    v-model="item.finalRejected[reject_index].subCategory"
-                  >
-                    <ion-select-option value=""
-                      >Please Select
-                    </ion-select-option>
-                    <ion-select-option
-                      v-for="(subCate, index) in reject.sub_category"
-                      :key="index"
-                      :value="subCate.id"
-                    >
-                      {{ subCate.name }}
-                    </ion-select-option>
-                  </ion-select>
-                </ion-col>
-                <ion-col size="4">
-                  <ion-select
-                    interface="action-sheet"
-                    :value="item.finalRejected[reject_index].mostProbableCause"
-                    v-model="item.finalRejected[reject_index].mostProbableCause"
-                  >
-                    <ion-select-option value=""
-                      >Please Select</ion-select-option
-                    >
-                    <ion-select-option
-                      v-for="(cause, index) in reject.most_probable_cause"
-                      :key="index"
-                      :value="cause.id"
-                    >
-                      {{ cause.name }}
-                    </ion-select-option>
-                  </ion-select>
-                </ion-col>
-              </ion-row>
-              <ion-row>
-                <ion-col size="4" style="--ion-grid-column-padding: 0px">
-                  <ion-grid
-                    style="
-                      --ion-grid-padding: 1px;
-                      --ion-grid-columns: 9;
-                      width: 100%;
-                    "
-                  >
-                    <ion-row style="border: 0px">
-                      <ion-col size="5" style="border-width: 0px 1px 1px 0px">
-                        <ion-text style="padding-left: 1px"
-                          >Staff Responsible</ion-text
+          <div v-if="item.hasReject == true" style="width: 100%">
+            <ion-row                   v-for="(reject, reject_index) in item.rejected"
+                  :key="reject_index">
+              <ion-col size="10" class="reject-box">
+                <ion-grid
+
+                  style="
+                    --ion-grid-columns: 10;
+                    --ion-grid-column-padding: 1px;
+                    padding-top: 3vh;
+                    padding-bottom: 3vh;
+                  "
+                >
+                  <ion-row class="reject-title">
+                    <ion-col size="4" style="text-align: center">
+                      <ion-text style="color: white">Rejected</ion-text>
+                    </ion-col>
+                    <ion-col size="2">
+                      <ion-text style="color: white">Sub-category</ion-text>
+                    </ion-col>
+                    <ion-col size="4">
+                      <ion-text style="color: white"
+                        >Most Probable Cause</ion-text
+                      >
+                    </ion-col>
+                  </ion-row>
+
+                  <ion-row>
+                    <ion-col size="4">
+                      <ion-text>{{ reject.name }}</ion-text>
+                    </ion-col>
+                    <ion-col size="2">
+                      <ion-select
+                        interface="action-sheet"
+                        :value="item.finalRejected[reject_index].subCategory"
+                        v-model="item.finalRejected[reject_index].subCategory"
+                      >
+                        <ion-select-option value=""
+                          >Please Select
+                        </ion-select-option>
+                        <ion-select-option
+                          v-for="(subCate, index) in reject.sub_category"
+                          :key="index"
+                          :value="subCate.id"
                         >
-                      </ion-col>
-                      <ion-col size="4" style="border-width: 0px 0px 1px 1px">
-                        <ion-text style="padding-left: 1px">[XXXX]</ion-text>
-                      </ion-col>
-                    </ion-row>
-                    <ion-row style="border: 0px; height: 6vh">
-                      <ion-col size="5" style="border-width: 1px 1px 0px 0px">
-                        <ion-text style="padding-left: 1px">Trade</ion-text>
-                      </ion-col>
-                      <ion-col size="4" style="border-width: 1px 0px 0px 1px">
-                        <ion-select
-                          interface="action-sheet"
-                          :value="item.finalRejected[reject_index].trade"
-                          v-model="item.finalRejected[reject_index].trade"
-                          style="padding-left: 1px"
+                          {{ subCate.name }}
+                        </ion-select-option>
+                      </ion-select>
+                    </ion-col>
+                    <ion-col size="4">
+                      <ion-select
+                        interface="action-sheet"
+                        :value="
+                          item.finalRejected[reject_index].mostProbableCause
+                        "
+                        v-model="
+                          item.finalRejected[reject_index].mostProbableCause
+                        "
+                      >
+                        <ion-select-option value=""
+                          >Please Select</ion-select-option
                         >
-                          <ion-select-option value=""
-                            >Please Select</ion-select-option
+                        <ion-select-option
+                          v-for="(cause, index) in reject.most_probable_cause"
+                          :key="index"
+                          :value="cause.id"
+                        >
+                          {{ cause.name }}
+                        </ion-select-option>
+                      </ion-select>
+                    </ion-col>
+                  </ion-row>
+                  <ion-row>
+                    <ion-col size="4" style="--ion-grid-column-padding: 0px">
+                      <ion-grid
+                        style="
+                          --ion-grid-padding: 1px;
+                          --ion-grid-columns: 9;
+                          width: 100%;
+                        "
+                      >
+                        <ion-row style="border: 0px">
+                          <ion-col
+                            size="5"
+                            style="border-width: 0px 1px 1px 0px"
                           >
-                          <ion-select-option
-                            v-for="(trad, index) in reject.trade"
-                            :key="index"
-                            :value="trad.id"
+                            <ion-text style="padding-left: 1px"
+                              >Staff Responsible</ion-text
+                            >
+                          </ion-col>
+                          <ion-col
+                            size="4"
+                            style="border-width: 0px 0px 1px 1px"
                           >
-                            {{ trad.name }}
-                          </ion-select-option>
-                        </ion-select>
-                      </ion-col>
-                    </ion-row>
-                  </ion-grid>
-                </ion-col>
-                <ion-col size="6" style="--ion-grid-column-padding: 0px">
-                  <ion-grid
-                    style="--ion-grid-columns: 12; --ion-grid-padding: 0px"
-                  >
-                    <ion-row>
-                      <ion-text>Remarks:</ion-text>
-                    </ion-row>
-                    <ion-row>
-                      <ion-col style="border: 0px" size="10"
-                        ><ion-input></ion-input
-                      ></ion-col>
-                      <ion-col style="border: 0px" size="2">
-                        <ion-button
-                          style="
-                            height: 60%;
-                            width: 90%;
-                            float: right;
-                            padding: 0px;
-                            font-size: 1vw;
-                          "
-                          expand="full"
-                          color="success"
-                        >
-                          Continue
-                        </ion-button>
-                      </ion-col>
-                    </ion-row>
-                  </ion-grid>
-                </ion-col>
-              </ion-row>
-            </ion-grid>
+                            <ion-text style="padding-left: 1px"
+                              >[XXXX]</ion-text
+                            >
+                          </ion-col>
+                        </ion-row>
+                        <ion-row style="border: 0px; height: 6vh">
+                          <ion-col
+                            size="5"
+                            style="border-width: 1px 1px 0px 0px"
+                          >
+                            <ion-text style="padding-left: 1px">Trade</ion-text>
+                          </ion-col>
+                          <ion-col
+                            size="4"
+                            style="border-width: 1px 0px 0px 1px"
+                          >
+                            <ion-select
+                              interface="action-sheet"
+                              :value="item.finalRejected[reject_index].trade"
+                              v-model="item.finalRejected[reject_index].trade"
+                              style="padding-left: 1px"
+                            >
+                              <ion-select-option value=""
+                                >Please Select</ion-select-option
+                              >
+                              <ion-select-option
+                                v-for="(trad, index) in reject.trade"
+                                :key="index"
+                                :value="trad.id"
+                              >
+                                {{ trad.name }}
+                              </ion-select-option>
+                            </ion-select>
+                          </ion-col>
+                        </ion-row>
+                      </ion-grid>
+                    </ion-col>
+                    <ion-col size="6" style="--ion-grid-column-padding: 0px">
+                      <ion-grid
+                        style="--ion-grid-columns: 12; --ion-grid-padding: 0px"
+                      >
+                        <ion-row>
+                          <ion-text>Remarks:</ion-text>
+                        </ion-row>
+                        <ion-row>
+                          <ion-col style="border: 0px" size="10"
+                            ><ion-input></ion-input
+                          ></ion-col>
+                          <ion-col style="border: 0px" size="2">
+                            <ion-button
+                              style="
+                                height: 60%;
+                                width: 90%;
+                                float: right;
+                                padding: 0px;
+                                font-size: 1vw;
+                              "
+                              expand="full"
+                              color="success"
+                              @click="takePhoto(item_index,reject_index)"
+                            >
+                              take photo
+                            </ion-button>
+                          </ion-col>
+                        </ion-row>
+                      </ion-grid>
+                    </ion-col>
+                  </ion-row>
+                </ion-grid>
+              </ion-col>
+              <ion-col class="reject-box" style="padding-top:3vh;">
+                <ion-img v-if="item.finalRejected[reject_index].photo" :src="item.finalRejected[reject_index].photo"></ion-img>
+              </ion-col>
+            </ion-row>
           </div>
         </ion-row>
 
         <ion-row style="padding-top: 3vh">
-          <ion-col offset="9" size="1" class="button-col">
-            <ion-button expand="full" color="success">Edit</ion-button>
-          </ion-col>
-          <ion-col size="1" class="button-col">
-            <ion-button expand="full" color="success" @click="clickSave"
+          <ion-col offset="10" size="1" class="button-col">
+            <ion-button expand="full" color="primary" @click="clickSave"
               >Save</ion-button
             >
           </ion-col>
           <ion-col size="1" class="button-col">
-            <ion-button expand="full" color="success">Submit</ion-button>
+            <ion-button expand="full" color="primary">Submit</ion-button>
           </ion-col>
         </ion-row>
       </ion-grid>
@@ -749,26 +773,52 @@ export default defineComponent({
   --color: #5e3e2c;
   --color-hover: #362419;
 }
+
 ion-item-divider {
   --background: black;
   margin-top: 0px;
   min-height: 0.5px !important;
 }
+ion-content {
+  --ion-background-color: #f1f0f0ea;
+}
+ion-img {
+  height: 15vh;
+  width: 100%;
+}
 
 ion-col {
   border: 1px solid #eceeef;
-  border-color: rgb(0, 0, 0);
+  border-color: rgba(88, 88, 88, 0.363);
 }
 .hardcodecol {
-  background-color: #eef734;
+  background-color: #5c90ff5e;
+}
+.section-title {
+  background-color: #2600ff91;
+}
+.reject-box {
+  border-width: 0px 0px 0px 0px !important;
+}
+.reject-title {
+  background-color: #fc4c4fda;
+}
+.reject-col {
+  border-width: 1px 1px 1px 1px !important;
+  border-color: rgb(88, 88, 88);
+}
+.reject-title-col {
+  border-width: 1px 1px 1px 1px !important;
+  border-color: rgb(88, 88, 88);
+  background-color: #fc4c4f93;
 }
 ion-text {
-  font-size: 1.6vw;
+  font-size: 1.3vw;
 }
 ion-select {
   height: 20px;
   padding-top: 11px;
-  font-size: 1.5vw;
+  font-size: 1.3vw;
 }
 .select-pop {
   width: 800px;
@@ -806,7 +856,7 @@ ion-checkbox {
 }
 ion-datetime {
   padding-top: 2px;
-  font-size: 1.6vw;
+  font-size: 1.3vw;
   color: black;
 }
 .button-col {
