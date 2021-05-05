@@ -15,7 +15,7 @@
             padding-top: 20px;
             padding-bottom: 20px;
           "
-          >STEDAS e-QSI</ion-title
+          >STEDAS e-QSI - Summary Report</ion-title
         >
       </ion-toolbar>
     </ion-header>
@@ -25,69 +25,30 @@
         <ion-row>
           <ion-col col-12 style="background-color: #ffc409">
             <ion-text style="font-weight: bold"
-              >Section A : Surveillance Details</ion-text
+              >Section A : Search Criteria</ion-text
             >
           </ion-col>
         </ion-row>
         <ion-row class="sectionA_subcol">
-          <ion-col class="hardcodecol">
-            <ion-text>Aircraft Reg. No :</ion-text>
+          <ion-col size="6" class="hardcodecol">
+            <ion-text>Date of Inspection(From/To):</ion-text>
           </ion-col>
           <ion-col>
-            <ion-select
-              interface="action-sheet"
-              :value="finalDataSectionA.aircraftRegNo"
-              v-model="finalDataSectionA.aircraftRegNo"
-            >
-              <ion-select-option value="">Please Select</ion-select-option>
-              <ion-select-option
-                v-for="(no, index) in aircraftRegNos"
-                :key="index"
-                :value="no.id"
-                >{{ no.aircraft_reg_no }}</ion-select-option
-              >
-            </ion-select>
-          </ion-col>
-          <ion-col class="hardcodecol">
-            <ion-text>Engine Type :</ion-text>
+            <ion-datetime
+              display-format="MM/DD/YYYY"
+              placeholder="<<Start Date>>"
+            ></ion-datetime>
           </ion-col>
           <ion-col>
-            <ion-select
-              interface="action-sheet"
-              :value="finalDataSectionA.engineType"
-              v-model="finalDataSectionA.engineType"
-            >
-              <ion-select-option value="">Please Select</ion-select-option>
-              <ion-select-option
-                v-for="(type, index) in engineTypes"
-                :key="index"
-                :value="type.id"
-                >{{ type.engine_type }}</ion-select-option
-              >
-            </ion-select>
+            <ion-datetime
+              display-format="MM/DD/YYYY"
+              placeholder="<<End Date>>"
+            ></ion-datetime>
           </ion-col>
         </ion-row>
         <ion-row class="sectionA_subcol">
           <ion-col class="hardcodecol">
-            <ion-text>Aircraft Type :</ion-text>
-          </ion-col>
-          <ion-col>
-            <ion-select
-              interface="action-sheet"
-              :value="finalDataSectionA.aircraftType"
-              v-model="finalDataSectionA.aircraftType"
-            >
-              <ion-select-option value="">Please Select</ion-select-option>
-              <ion-select-option
-                v-for="(type, index) in aircraftTypes"
-                :key="index"
-                :value="type.id"
-                >{{ type.aircraft_type }}</ion-select-option
-              >
-            </ion-select>
-          </ion-col>
-          <ion-col class="hardcodecol">
-            <ion-text>Customer/Program :</ion-text>
+            <ion-text>Customer/Program:</ion-text>
           </ion-col>
           <ion-col>
             <ion-select
@@ -124,84 +85,37 @@
               >
             </ion-select>
           </ion-col>
-          <ion-col class="hardcodecol">
-            <ion-text>Location :</ion-text>
-          </ion-col>
-          <ion-col>
-            <ion-select
-              interface="action-sheet"
-              :value="finalDataSectionA.location"
-              v-model="finalDataSectionA.location"
-            >
-              <ion-select-option value="">Please Select</ion-select-option>
-              <ion-select-option
-                v-for="(location, index) in locations"
-                :key="index"
-                :value="location.id"
-                >{{ location.location }}</ion-select-option
-              >
-            </ion-select>
-          </ion-col>
         </ion-row>
-        <ion-row class="sectionA_subcol">
-          <ion-col class="hardcodecol">
-            <ion-text>Checklist :</ion-text>
-          </ion-col>
-          <ion-col>
-            <ion-select
-              interface="action-sheet"
-              :value="finalDataSectionA.checklist"
-              v-model="finalDataSectionA.checklist"
-              @ionChange="selectChange()"
-            >
-              <ion-select-option value="">Please Select</ion-select-option>
-              <ion-select-option
-                v-for="(checklist, index) in checklists"
-                :key="index"
-                :value="checklist.id"
-                >{{ checklist.checklist }}</ion-select-option
-              >
-            </ion-select>
-          </ion-col>
-          <ion-col class="hardcodecol">
-            <ion-text>Date of Inspection :</ion-text>
-          </ion-col>
-          <ion-col>
-            <ion-text style="padding-left: 16px; font-size: 1.5vw">{{
-              currentDate
-            }}</ion-text>
+        <ion-row style="padding-top: 10px">
+          <ion-col offset="10" size="2" class="button-col">
+            <ion-button expand="full" color="success">Display</ion-button>
           </ion-col>
         </ion-row>
       </ion-grid>
 
-      <ion-grid
+      <!-- <ion-grid
         style="
           padding-top: 30px;
           --ion-grid-padding: 0px;
           --ion-grid-column-padding: 0px;
         "
         v-if="showSectionB"
-      >
+      > -->
+      <ion-grid style="padding-top: 30px">
         <ion-row>
-          <ion-col col-12 style="background-color: #ffc409">
-            <ion-text style="font-weight: bold">Section B : Checklist</ion-text>
+          <ion-col style="background-color: #ffc409">
+            <ion-text style="font-weight: bold">Section B : Results</ion-text>
           </ion-col>
         </ion-row>
         <ion-row>
-          <ion-col size="1" class="hardcodecol" style="text-align: center">
-            <ion-text>S/N</ion-text>
+          <ion-col size="6" class="hardcodecol">
+            <ion-text>Checklists</ion-text>
           </ion-col>
-          <ion-col size="4" class="hardcodecol">
-            <ion-text>Check Item</ion-text>
+          <ion-col size="3" class="hardcodecol" style="text-align: center">
+            <ion-text>No. of Checks</ion-text>
           </ion-col>
-          <ion-col size="5" class="hardcodecol">
-            <ion-text>Check Elements</ion-text>
-          </ion-col>
-          <ion-col size="1" class="hardcodecol" style="text-align: center">
-            <ion-text>Qty Inspected</ion-text>
-          </ion-col>
-          <ion-col size="1" class="hardcodecol" style="text-align: center">
-            <ion-text>Qty Rejected</ion-text>
+          <ion-col size="3" class="hardcodecol" style="text-align: center">
+            <ion-text>No. of Rejects</ion-text>
           </ion-col>
         </ion-row>
         <ion-row v-for="(item, item_index) in checkItems" :key="item_index">
@@ -268,163 +182,6 @@
               </ion-row>
             </ion-grid>
           </ion-col>
-          <div v-if="item.hasReject == true" style="width: 100%">
-            <ion-grid
-              v-for="(reject, reject_index) in item.rejected"
-              :key="reject_index"
-              style="
-                padding-left: 8.3vw;
-                padding-right: 8.3vw;
-                --ion-grid-columns: 10;
-                --ion-grid-column-padding: 1px;
-                padding-top: 3vh;
-                padding-bottom: 3vh;
-              "
-            >
-              <ion-row style="background-color: red">
-                <ion-col size="4" style="text-align: center">
-                  <ion-text style="color: white">Rejected</ion-text>
-                </ion-col>
-                <ion-col size="2">
-                  <ion-text style="color: white">Sub-category</ion-text>
-                </ion-col>
-                <ion-col size="4">
-                  <ion-text style="color: white">Most Probable Cause</ion-text>
-                </ion-col>
-              </ion-row>
-
-              <ion-row>
-                <ion-col size="4">
-                  <ion-text>{{ reject.name }}</ion-text>
-                </ion-col>
-                <ion-col size="2">
-                  <ion-select
-                    interface="action-sheet"
-                    :value="item.finalRejected[reject_index].subCategory"
-                    v-model="item.finalRejected[reject_index].subCategory"
-                  >
-                    <ion-select-option value=""
-                      >Please Select
-                    </ion-select-option>
-                    <ion-select-option
-                      v-for="(subCate, index) in reject.sub_category"
-                      :key="index"
-                      :value="subCate.id"
-                    >
-                      {{ subCate.name }}
-                    </ion-select-option>
-                  </ion-select>
-                </ion-col>
-                <ion-col size="4">
-                  <ion-select
-                    interface="action-sheet"
-                    :value="item.finalRejected[reject_index].mostProbableCause"
-                    v-model="item.finalRejected[reject_index].mostProbableCause"
-                  >
-                    <ion-select-option value=""
-                      >Please Select</ion-select-option
-                    >
-                    <ion-select-option
-                      v-for="(cause, index) in reject.most_probable_cause"
-                      :key="index"
-                      :value="cause.id"
-                    >
-                      {{ cause.name }}
-                    </ion-select-option>
-                  </ion-select>
-                </ion-col>
-              </ion-row>
-              <ion-row>
-                <ion-col size="4" style="--ion-grid-column-padding: 0px">
-                  <ion-grid
-                    style="
-                      --ion-grid-padding: 1px;
-                      --ion-grid-columns: 9;
-                      width: 100%;
-                    "
-                  >
-                    <ion-row style="border: 0px">
-                      <ion-col size="5" style="border-width: 0px 1px 1px 0px">
-                        <ion-text style="padding-left: 1px"
-                          >Staff Responsible</ion-text
-                        >
-                      </ion-col>
-                      <ion-col size="4" style="border-width: 0px 0px 1px 1px">
-                        <ion-text style="padding-left: 1px">[XXXX]</ion-text>
-                      </ion-col>
-                    </ion-row>
-                    <ion-row style="border: 0px; height: 6vh">
-                      <ion-col size="5" style="border-width: 1px 1px 0px 0px">
-                        <ion-text style="padding-left: 1px">Trade</ion-text>
-                      </ion-col>
-                      <ion-col size="4" style="border-width: 1px 0px 0px 1px">
-                        <ion-select
-                          interface="action-sheet"
-                          :value="item.finalRejected[reject_index].trade"
-                          v-model="item.finalRejected[reject_index].trade"
-                          style="padding-left: 1px"
-                        >
-                          <ion-select-option value=""
-                            >Please Select</ion-select-option
-                          >
-                          <ion-select-option
-                            v-for="(trad, index) in reject.trade"
-                            :key="index"
-                            :value="trad.id"
-                          >
-                            {{ trad.name }}
-                          </ion-select-option>
-                        </ion-select>
-                      </ion-col>
-                    </ion-row>
-                  </ion-grid>
-                </ion-col>
-                <ion-col size="6" style="--ion-grid-column-padding: 0px">
-                  <ion-grid
-                    style="--ion-grid-columns: 12; --ion-grid-padding: 0px"
-                  >
-                    <ion-row>
-                      <ion-text>Remarks:</ion-text>
-                    </ion-row>
-                    <ion-row>
-                      <ion-col style="border: 0px" size="10"
-                        ><ion-input></ion-input
-                      ></ion-col>
-                      <ion-col style="border: 0px" size="2">
-                        <ion-button
-                          style="
-                            height: 60%;
-                            width: 90%;
-                            float: right;
-                            padding: 0px;
-                            font-size: 1vw;
-                          "
-                          expand="full"
-                          color="success"
-                        >
-                          Continue
-                        </ion-button>
-                      </ion-col>
-                    </ion-row>
-                  </ion-grid>
-                </ion-col>
-              </ion-row>
-            </ion-grid>
-          </div>
-        </ion-row>
-
-        <ion-row style="padding-top: 3vh">
-          <ion-col offset="9" size="1" class="button-col">
-            <ion-button expand="full" color="success">Edit</ion-button>
-          </ion-col>
-          <ion-col size="1" class="button-col">
-            <ion-button expand="full" color="success" @click="clickSave"
-              >Save</ion-button
-            >
-          </ion-col>
-          <ion-col size="1" class="button-col">
-            <ion-button expand="full" color="success">Submit</ion-button>
-          </ion-col>
         </ion-row>
       </ion-grid>
     </ion-content>
@@ -452,6 +209,7 @@ import {
   IonItemDivider,
   IonButton,
   IonItem,
+  IonDatetime,
 } from "@ionic/vue";
 import { defineComponent } from "vue";
 import { services } from "../scripts/service";
@@ -475,7 +233,7 @@ export default defineComponent({
     IonSelectOption,
     IonCheckbox,
     IonMenuButton,
-
+    IonDatetime,
     IonButtons,
     IonItemDivider,
     IonButton,
@@ -513,8 +271,7 @@ export default defineComponent({
   },
   methods: {
     clickSave() {
-
-      const  key = this.generateKey(15);
+      const key = this.generateKey(15);
 
       const data = {
         sectionA: this.finalDataSectionA,
@@ -522,7 +279,7 @@ export default defineComponent({
         date: this.currentDate,
       };
       localStorage.setItem(key, JSON.stringify(data));
-      services.openToast("checklist Saved")
+      services.openToast("checklist Saved");
     },
     clickChecked(itemIndex: number, elementIndex: number) {
       if (
@@ -721,6 +478,11 @@ export default defineComponent({
   --color: #5e3e2c;
   --color-hover: #362419;
 }
+
+ion-datetime {
+  height: 20px;
+}
+
 ion-item-divider {
   --background: black;
   margin-top: 0px;
@@ -746,7 +508,6 @@ ion-select {
   width: 800px;
 }
 .sectionA_subcol {
-  width: 90vw;
 }
 .col-in-col-1 {
   border-width: 0px 1px 0px 0px;

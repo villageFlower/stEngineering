@@ -3,7 +3,7 @@
     <ion-header :translucent="true">
       <ion-toolbar>
         <ion-buttons slot="start">
-          <ion-menu-button menu="custom"></ion-menu-button>
+          <ion-back-button @click="() => router.push('/saved')"></ion-back-button>
         </ion-buttons>
 
         <ion-title
@@ -15,7 +15,7 @@
             padding-top: 20px;
             padding-bottom: 20px;
           "
-          >STEDAS e-QSI</ion-title
+          >STEDAS e-QSI (Saved)</ion-title
         >
       </ion-toolbar>
     </ion-header>
@@ -445,13 +445,10 @@ import {
   IonGrid,
   IonSelectOption,
   IonCheckbox,
-  IonMenuButton,
   loadingController,
-  IonList,
   IonButtons,
   IonItemDivider,
   IonButton,
-  IonItem,
 } from "@ionic/vue";
 import { defineComponent } from "vue";
 import { services } from "../scripts/service";
@@ -474,8 +471,6 @@ export default defineComponent({
     IonGrid,
     IonSelectOption,
     IonCheckbox,
-    IonMenuButton,
-
     IonButtons,
     IonItemDivider,
     IonButton,
@@ -484,10 +479,13 @@ export default defineComponent({
     const options: any = {
       cssClass: "my-custom-interface",
     };
-    return { options };
+    const route = useRoute();
+    const router = useRouter();
+    return { options, route, router };
   },
   data() {
     return {
+      id: null as any,
       initing: false,
       showSectionB: false,
       hasRejected: false,
@@ -513,16 +511,14 @@ export default defineComponent({
   },
   methods: {
     clickSave() {
-
-      const  key = this.generateKey(15);
-
+      const key = this.id;
       const data = {
         sectionA: this.finalDataSectionA,
         sectionB: this.checkItems,
         date: this.currentDate,
       };
       localStorage.setItem(key, JSON.stringify(data));
-      services.openToast("checklist Saved")
+      services.openToast("Checklist Saved")
     },
     clickChecked(itemIndex: number, elementIndex: number) {
       if (
@@ -607,6 +603,21 @@ export default defineComponent({
         this.showSectionB == false;
         return;
       }
+      if (this.id != "enter") {
+        if (this.initing == true) {
+          this.initing = false;
+          return;
+        }
+        this.presentLoading("Loading Checklist ...");
+        console.log(this.getItemArrayById(checklistId));
+        this.checkItems = await services.getCheckItems(
+          this.getItemArrayById(checklistId)
+        );
+        console.log(this.checkItems);
+        this.showSectionB = true;
+        this.hideLoading();
+        return;
+      }
       this.presentLoading("Loading Checklist ...");
       console.log(this.getItemArrayById(checklistId));
       this.checkItems = await services.getCheckItems(
@@ -664,6 +675,7 @@ export default defineComponent({
       await this.loading.dismiss();
     },
     async init() {
+      this.id = this.route.params.id;
       this.initing = true;
       this.presentLoading("Loading...");
       this.aircraftRegNos = await services.getAircraftRegNo();
@@ -674,11 +686,27 @@ export default defineComponent({
       this.customers = await services.getCustomer();
       this.locations = await services.getLocation();
       this.currentDate = this.formatDate();
+      console.log("retrieve from saved", this.id);
+      let savedData: any = localStorage.getItem(this.id);
+      savedData = savedData != null ? JSON.parse(savedData) : Object;
+      this.finalDataSectionA = savedData.sectionA;
+      if (savedData.sectionB != null) {
+        this.checkItems = savedData.sectionB;
+        this.showSectionB = true;
+      }
+      this.currentDate = savedData.date;
+      this.showSectionB = true;
+      this.hideLoading();
+      console.log(savedData);
+
       this.hideLoading();
     },
   },
   ionViewDidEnter() {
     this.init();
+  },
+  ionViewWillLeave() {
+    this.id = "";
   },
 });
 </script>

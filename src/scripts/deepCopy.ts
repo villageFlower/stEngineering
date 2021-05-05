@@ -2,6 +2,9 @@ export const deepCopy = <T>(target: T): T => {
   if (target === null) {
     return target;
   }
+  if (typeof target === 'string') {
+    return target;
+  }
   if (target instanceof Date) {
     return new Date(target.getTime()) as any;
   }
