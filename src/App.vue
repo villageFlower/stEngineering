@@ -44,7 +44,7 @@
 </template>
 
 <script lang="ts">
-import { IonApp, IonRouterOutlet, IonMenu, menuController } from "@ionic/vue";
+import { IonApp, IonRouterOutlet, IonMenu, menuController, IonImg } from "@ionic/vue";
 import { defineComponent } from "vue";
 import { useRouter } from "vue-router";
 
