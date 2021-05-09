@@ -49,6 +49,7 @@ const firebaseConfig = {
 };
 firebase.initializeApp(firebaseConfig);
 export const db = firebase.firestore();
+export const storageRef = firebase.storage().ref();
 
 const app = createApp(App)
   .use(IonicVue)

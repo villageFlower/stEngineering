@@ -270,11 +270,12 @@
           </ion-col>
 
           <div v-if="item.hasReject == true" style="width: 100%">
-            <ion-row                   v-for="(reject, reject_index) in item.rejected"
-                  :key="reject_index">
+            <ion-row
+              v-for="(reject, reject_index) in item.rejected"
+              :key="reject_index"
+            >
               <ion-col size="10" class="reject-box">
                 <ion-grid
-
                   style="
                     --ion-grid-columns: 10;
                     --ion-grid-column-padding: 1px;
@@ -422,7 +423,7 @@
                               "
                               expand="full"
                               color="success"
-                              @click="takePhoto(item_index,reject_index)"
+                              @click="takePhoto(item_index, reject_index)"
                             >
                               take photo
                             </ion-button>
@@ -433,8 +434,11 @@
                   </ion-row>
                 </ion-grid>
               </ion-col>
-              <ion-col class="reject-box" style="padding-top:3vh;">
-                <ion-img v-if="item.finalRejected[reject_index].photo" :src="item.finalRejected[reject_index].photo"></ion-img>
+              <ion-col class="reject-box" style="padding-top: 3vh">
+                <ion-img
+                  v-if="item.finalRejected[reject_index].photo"
+                  :src="item.finalRejected[reject_index].photo"
+                ></ion-img>
               </ion-col>
             </ion-row>
           </div>
@@ -447,7 +451,9 @@
             >
           </ion-col>
           <ion-col size="1" class="button-col">
-            <ion-button expand="full" color="primary">Submit</ion-button>
+            <ion-button expand="full" color="primary" @click="clickSubmit">
+              Submit</ion-button
+            >
           </ion-col>
         </ion-row>
       </ion-grid>
@@ -487,8 +493,8 @@ import { useRouter } from "vue-router";
 import { camera, trash, close, images, square, triangle } from "ionicons/icons";
 import { usePhotoGallery, Photo } from "@/composables/usePhotoGallery";
 import { Plugins, CameraResultType } from "@capacitor/core";
-
 import { isPlatform } from "@ionic/vue";
+import { storageRef } from "@/main";
 
 const { Camera } = Plugins;
 const { photos, takePhoto } = usePhotoGallery();
@@ -518,6 +524,7 @@ export default defineComponent({
     const options: any = {
       cssClass: "my-custom-interface",
     };
+    const router = useRouter();
 
     return {
       options,
@@ -525,6 +532,7 @@ export default defineComponent({
       camera,
       trash,
       close,
+      router,
     };
   },
   data() {
@@ -549,18 +557,36 @@ export default defineComponent({
         customerProgram: "",
         location: "",
         checklist: "",
+        date: "",
       },
+      alertButtons: [
+        {
+          text: "OK",
+          role: "cancel",
+          cssClass: "primary",
+          handler: () => {
+            this.reset();
+            console.log("quit");
+          },
+        },
+      ],
+      initialDataConfiguration: null as any,
     };
   },
   methods: {
-    async takePhoto( itemIndex: any, rejectIndex: any){
+    reset() {
+      this.$data = this.initialDataConfiguration;
+    },
+    async takePhoto(itemIndex: any, rejectIndex: any) {
       const image = await Camera.getPhoto({
         quality: 90,
         allowEditing: true,
         resultType: CameraResultType.Uri,
       });
-      this.checkItems[itemIndex].finalRejected[rejectIndex].photo =  image.webPath
-      console.log(this.checkItems[itemIndex])
+      const key = this.generateKey(15) + this.currentDate;
+      const url = await services.uploadImage(image.webPath, key);
+      this.checkItems[itemIndex].finalRejected[rejectIndex].photo = url;
+      console.log(this.checkItems[itemIndex]);
     },
     clickSave() {
       const key = this.generateKey(15);
@@ -573,28 +599,85 @@ export default defineComponent({
       localStorage.setItem(key, JSON.stringify(data));
       services.openToast("checklist Saved");
     },
+    async clickSubmit() {
+      let data: any = {};
+      data = deepCopy(this.finalDataSectionA);
+
+      const sectionB = this.checkItems;
+      sectionB.forEach(
+        (item: {
+          checks: any;
+          rejects: any;
+          [x: string]: {
+            most_probable_cause: any;
+            sub_category: any;
+            trade: any;
+            photo: any;
+            checked: any;
+            rejected: any;
+          }[];
+        }) => {
+          item.checks = 0;
+          item.rejects = 0;
+          item["check_elements"].forEach(
+            (element: {
+              most_probable_cause: any;
+              sub_category: any;
+              trade: any;
+              checked: any;
+              rejected: any;
+            }) => {
+              if (element.checked == 1) {
+                item.checks += 1;
+              }
+              if (element.rejected == 1) {
+                item.rejects += 1;
+              }
+              delete element.most_probable_cause;
+              delete element.sub_category;
+              delete element.trade;
+            }
+          );
+        }
+      );
+      data["sectionB"] = sectionB;
+      data["date"] = new Date(this.currentDate);
+      const res = await services.submitChecklist(data);
+      if (res) {
+        services.presentAlertConfirm(
+          "Submitted",
+          "Checklist Submitted, your submition reference id is:" + res,
+          this.alertButtons
+        );
+        const submitted = localStorage.getItem("submitted");
+        let tempData = [];
+        submitted ? (tempData = JSON.parse(submitted)) : (tempData = []);
+        tempData.push({
+          ref: "submission Ref: " + res,
+          date: this.currentDate,
+        });
+        localStorage.setItem("submitted", JSON.stringify(tempData));
+        return;
+      }
+      services.openToast("Network Error, Please save and try again later");
+    },
     clickChecked(itemIndex: number, elementIndex: number) {
       if (
         this.checkItems[itemIndex].check_elements[elementIndex].checked == 1
       ) {
         this.checkItems[itemIndex].check_elements[elementIndex].checked = 0;
         this.checkItems[itemIndex].check_elements[elementIndex].rejected = 0;
-        //for showing data
-        this.checkItems[itemIndex]["rejected"].splice(
-          this.findElementIndex(
-            this.checkItems[itemIndex]["rejected"],
-            this.checkItems[itemIndex].check_elements[elementIndex].name
-          ),
-          1
+        const rejectIndex = this.findElementIndex(
+          this.checkItems[itemIndex]["rejected"],
+          this.checkItems[itemIndex].check_elements[elementIndex].name
         );
+        if (rejectIndex != -1) {
+          //for showing data
+        this.checkItems[itemIndex]["rejected"].splice(rejectIndex, 1);
         //for final data binding
-        this.checkItems[itemIndex]["finalRejected"].splice(
-          this.findElementIndex(
-            this.checkItems[itemIndex]["finalRejected"],
-            this.checkItems[itemIndex].check_elements[elementIndex].name
-          ),
-          1
-        );
+        this.checkItems[itemIndex]["finalRejected"].splice(rejectIndex, 1);
+        }
+        
         return;
       }
       this.checkItems[itemIndex].check_elements[elementIndex].checked = 1;
@@ -606,7 +689,6 @@ export default defineComponent({
         this.checkItems[itemIndex].check_elements[elementIndex].rejected = 1;
         this.checkItems[itemIndex].check_elements[elementIndex].checked = 1;
         this.checkItems[itemIndex].hasReject = true;
-
         //for showing data
         this.checkItems[itemIndex].rejected.push(
           this.checkItems[itemIndex].check_elements[elementIndex]
@@ -622,22 +704,16 @@ export default defineComponent({
         return;
       }
       this.checkItems[itemIndex].check_elements[elementIndex].rejected = 0;
-      //for showing data
-      this.checkItems[itemIndex]["rejected"].splice(
-        this.findElementIndex(
+        const rejectIndex = this.findElementIndex(
           this.checkItems[itemIndex]["rejected"],
           this.checkItems[itemIndex].check_elements[elementIndex].name
-        ),
-        1
-      );
-      //for final data binding
-      this.checkItems[itemIndex]["finalRejected"].splice(
-        this.findElementIndex(
-          this.checkItems[itemIndex]["finalRejected"],
-          this.checkItems[itemIndex].check_elements[elementIndex].name
-        ),
-        1
-      );
+        );
+        if (rejectIndex != -1) {
+          //for showing data
+        this.checkItems[itemIndex]["rejected"].splice(rejectIndex, 1);
+        //for final data binding
+        this.checkItems[itemIndex]["finalRejected"].splice(rejectIndex, 1);
+        }
       for (
         let i = 0;
         i < this.checkItems[itemIndex]["check_elements"].length;
@@ -727,6 +803,7 @@ export default defineComponent({
     },
   },
   ionViewDidEnter() {
+    this.initialDataConfiguration = this.$data;
     this.init();
   },
 });

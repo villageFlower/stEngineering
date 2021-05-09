@@ -36,6 +36,14 @@
               >Saved checklist</ion-button
             >
           </ion-item>
+          <ion-item>
+            <ion-button
+              expand="full"
+              fill="clear"
+              @click="routeTo('/submissions')"
+              >Submission history</ion-button
+            >
+          </ion-item>
         </ion-list>
       </ion-content>
     </ion-menu>

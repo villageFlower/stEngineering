@@ -3,6 +3,7 @@ import { RouteRecordRaw } from 'vue-router';
 import Home from '../views/Home.vue'
 import SavedChecklist from '../views/SavedChecklist.vue'
 import SavedDetail from '../views/SavedDetail.vue'
+import SavedSubmission from '../views/SavedSubmission.vue'
 import Report from '../views/Report.vue'
 
 const routes: Array<RouteRecordRaw> = [
@@ -24,6 +25,11 @@ const routes: Array<RouteRecordRaw> = [
     path: '/saved',
     name: 'SavedChecklist',
     component: SavedChecklist
+  },
+  {
+    path: '/submissions',
+    name: 'SavedSubmission',
+    component: SavedSubmission
   },
   {
     path: '/savedDetail/:id',

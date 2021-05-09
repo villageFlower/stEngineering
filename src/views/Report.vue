@@ -37,12 +37,14 @@
             <ion-datetime
               display-format="MM/DD/YYYY"
               placeholder="<<Start Date>>"
+              v-model="finalData.startDate"
             ></ion-datetime>
           </ion-col>
           <ion-col>
             <ion-datetime
               display-format="MM/DD/YYYY"
               placeholder="<<End Date>>"
+              v-model="finalData.endDate"
             ></ion-datetime>
           </ion-col>
         </ion-row>
@@ -53,8 +55,8 @@
           <ion-col>
             <ion-select
               interface="action-sheet"
-              :value="finalDataSectionA.customerProgram"
-              v-model="finalDataSectionA.customerProgram"
+              :value="finalData.customerProgram"
+              v-model="finalData.customerProgram"
             >
               <ion-select-option value="">Please Select</ion-select-option>
               <ion-select-option
@@ -73,8 +75,8 @@
           <ion-col>
             <ion-select
               interface="action-sheet"
-              :value="finalDataSectionA.inspectedBy"
-              v-model="finalDataSectionA.inspectedBy"
+              :value="finalData.inspectedBy"
+              v-model="finalData.inspectedBy"
             >
               <ion-select-option value="">Please Select</ion-select-option>
               <ion-select-option
@@ -88,7 +90,9 @@
         </ion-row>
         <ion-row style="padding-top: 10px">
           <ion-col offset="10" size="2" class="button-col">
-            <ion-button expand="full" color="success">Display</ion-button>
+            <ion-button expand="full" color="success" @click="clickDisplay"
+              >Display</ion-button
+            >
           </ion-col>
         </ion-row>
       </ion-grid>
@@ -108,7 +112,7 @@
           </ion-col>
         </ion-row>
         <ion-row>
-          <ion-col size="6" class="hardcodecol">
+          <ion-col size="6" class="hardcodecol" style="text-align: center">
             <ion-text>Checklists</ion-text>
           </ion-col>
           <ion-col size="3" class="hardcodecol" style="text-align: center">
@@ -118,70 +122,47 @@
             <ion-text>No. of Rejects</ion-text>
           </ion-col>
         </ion-row>
-        <ion-row v-for="(item, item_index) in checkItems" :key="item_index">
-          <ion-col size="1" style="text-align: center">
-            <ion-text>{{ item_index + 1 }}</ion-text>
-          </ion-col>
-          <ion-col size="4">
-            <ion-text>{{ item.check_item }}</ion-text>
-          </ion-col>
-
-          <ion-col size="7" style="--ion-grid-column-padding: 0px">
-            <ion-grid
-              style="
-                --ion-grid-padding: 0px;
-                --ion-grid-columns: 7;
-                --ion-grid-column-padding: 0px;
-              "
-            >
-              <ion-row
-                style="height: 100%; border-width: 0px solid"
-                v-for="(element, element_index) in item.check_elements"
-                :key="element_index"
+        <ion-row v-for="(checklist, index) in checklists" :key="index">
+          <ion-grid
+            style="
+              --ion-grid-padding: 0px;
+              --ion-grid-columns: 12;
+              --ion-grid-column-padding: 0px;
+            "
+          >
+            <ion-row>
+              <ion-col size="6" class="itemname">
+                <ion-text>{{ checklist.checklist }}</ion-text>
+              </ion-col>
+              <ion-col size="3" style="text-align: center">
+                <ion-text></ion-text>
+              </ion-col>
+              <ion-col size="3" style="text-align: center">
+                <ion-text></ion-text>
+              </ion-col>
+            </ion-row>
+            <ion-row v-for="(checkitem, index) in checklist.check_items" :key="index">
+              <ion-grid
+                style="
+                  --ion-grid-padding: 0px;
+                  --ion-grid-columns: 12;
+                  --ion-grid-column-padding: 0px;
+                "
               >
-                <ion-item-divider v-if="element_index != 0"></ion-item-divider>
-                <ion-col size="3" class="col-in-col-1">
-                  <ion-text>{{ element.name }}</ion-text>
-                </ion-col>
-                <ion-col
-                  size="1"
-                  class="col-in-col-2"
-                  @click="clickChecked(item_index, element_index)"
-                >
-                  <ion-text class="col-in-col-2-item">Checked</ion-text>
-                  <ion-checkbox
-                    color="dark"
-                    :checked="element.checked == 1"
-                  ></ion-checkbox>
-                </ion-col>
-                <ion-col
-                  size="1"
-                  class="col-in-col-3"
-                  @click="clickRejected(item_index, element_index)"
-                >
-                  <ion-text class="col-in-col-2-item">Reject</ion-text>
-                  <ion-checkbox
-                    color="dark"
-                    :checked="element.rejected == 1"
-                  ></ion-checkbox>
-                </ion-col>
-                <ion-col
-                  size="1"
-                  style="text-align: center"
-                  class="col-in-col-4"
-                >
-                  <ion-text>{{ element.checked }}</ion-text>
-                </ion-col>
-                <ion-col
-                  size="1"
-                  style="text-align: center"
-                  class="col-in-col-4"
-                >
-                  <ion-text>{{ element.rejected }}</ion-text>
-                </ion-col>
-              </ion-row>
-            </ion-grid>
-          </ion-col>
+                <ion-row>
+                  <ion-col size="6" >
+                    <ion-text>{{checkitem.name}}</ion-text>
+                  </ion-col>
+                  <ion-col size="3" style="text-align: center">
+                    <ion-text>{{checkitem.checks}}</ion-text>
+                  </ion-col>
+                  <ion-col size="3" style="text-align: center">
+                    <ion-text>{{checkitem.rejects}}</ion-text>
+                  </ion-col>
+                </ion-row>
+              </ion-grid>
+            </ion-row>
+          </ion-grid>
         </ion-row>
       </ion-grid>
     </ion-content>
@@ -201,21 +182,15 @@ import {
   IonRow,
   IonGrid,
   IonSelectOption,
-  IonCheckbox,
   IonMenuButton,
   loadingController,
-  IonList,
   IonButtons,
-  IonItemDivider,
   IonButton,
-  IonItem,
   IonDatetime,
 } from "@ionic/vue";
 import { defineComponent } from "vue";
 import { services } from "../scripts/service";
 import { deepCopy } from "../scripts/deepCopy";
-import { useRoute } from "vue-router";
-import { useRouter } from "vue-router";
 
 export default defineComponent({
   name: "Home",
@@ -231,11 +206,9 @@ export default defineComponent({
     IonRow,
     IonGrid,
     IonSelectOption,
-    IonCheckbox,
     IonMenuButton,
     IonDatetime,
     IonButtons,
-    IonItemDivider,
     IonButton,
   },
   setup() {
@@ -246,168 +219,44 @@ export default defineComponent({
   },
   data() {
     return {
-      initing: false,
       showSectionB: false,
-      hasRejected: false,
-      aircraftRegNos: new Array(0),
-      aircraftTypes: new Array(0),
       inspectedBys: new Array(0),
       checklists: new Array(0),
-      engineTypes: new Array(0),
       customers: new Array(0),
       locations: new Array(0),
-      currentDate: null as any,
       loading: null as any,
-      checkItems: null as any,
-      finalDataSectionA: {
-        aircraftRegNo: "",
-        engineType: "",
-        aircraftType: "",
+      finalData: {
+        startDate: "",
+        endDate: "",
         customerProgram: "",
-        location: "",
-        checklist: "",
+        inspectedBy: "",
       },
     };
   },
   methods: {
     clickSave() {
-      const key = this.generateKey(15);
-
-      const data = {
-        sectionA: this.finalDataSectionA,
-        sectionB: this.checkItems,
-        date: this.currentDate,
-      };
-      localStorage.setItem(key, JSON.stringify(data));
-      services.openToast("checklist Saved");
+      console.log("save");
     },
-    clickChecked(itemIndex: number, elementIndex: number) {
-      if (
-        this.checkItems[itemIndex].check_elements[elementIndex].checked == 1
-      ) {
-        this.checkItems[itemIndex].check_elements[elementIndex].checked = 0;
-        this.checkItems[itemIndex].check_elements[elementIndex].rejected = 0;
-        //for showing data
-        this.checkItems[itemIndex]["rejected"].splice(
-          this.findElementIndex(
-            this.checkItems[itemIndex]["rejected"],
-            this.checkItems[itemIndex].check_elements[elementIndex].name
-          ),
-          1
-        );
-        //for final data binding
-        this.checkItems[itemIndex]["finalRejected"].splice(
-          this.findElementIndex(
-            this.checkItems[itemIndex]["finalRejected"],
-            this.checkItems[itemIndex].check_elements[elementIndex].name
-          ),
-          1
-        );
-        return;
-      }
-      this.checkItems[itemIndex].check_elements[elementIndex].checked = 1;
-    },
-    clickRejected(itemIndex: number, elementIndex: number) {
-      if (
-        this.checkItems[itemIndex].check_elements[elementIndex].rejected == 0
-      ) {
-        this.checkItems[itemIndex].check_elements[elementIndex].rejected = 1;
-        this.checkItems[itemIndex].check_elements[elementIndex].checked = 1;
-        this.checkItems[itemIndex].hasReject = true;
-
-        //for showing data
-        this.checkItems[itemIndex].rejected.push(
-          this.checkItems[itemIndex].check_elements[elementIndex]
-        );
-        //for final data binding
-        this.checkItems[itemIndex].finalRejected.push({
-          name: this.checkItems[itemIndex].check_elements[elementIndex].name,
-          staffResponsibility: "",
-          trade: "",
-          subCategory: "",
-          mostProbableCause: "",
+    async clickDisplay() {
+      this.finalData.startDate = new Date(
+        this.formatDate(this.finalData.startDate)
+      );
+      this.finalData.endDate = new Date(
+        this.formatDate(this.finalData.endDate)
+      );
+      console.log(this.finalData);
+      this.checklists.forEach(async (list) => {
+        const res = await services.getReportData(list.id, this.finalData);
+        console.log(res);
+        res.forEach((item) => {
+          for (let i = 0; i < item["sectionB"].length; i++) {
+            if(i==0){list.check_items[i].checks=0;list.check_items[i].rejects=0}
+            list.check_items[i].checks += item.sectionB[i].checks;
+            list.check_items[i].rejects += item.sectionB[i].rejects;
+          }
         });
-        return;
-      }
-      this.checkItems[itemIndex].check_elements[elementIndex].rejected = 0;
-      //for showing data
-      this.checkItems[itemIndex]["rejected"].splice(
-        this.findElementIndex(
-          this.checkItems[itemIndex]["rejected"],
-          this.checkItems[itemIndex].check_elements[elementIndex].name
-        ),
-        1
-      );
-      //for final data binding
-      this.checkItems[itemIndex]["finalRejected"].splice(
-        this.findElementIndex(
-          this.checkItems[itemIndex]["finalRejected"],
-          this.checkItems[itemIndex].check_elements[elementIndex].name
-        ),
-        1
-      );
-      for (
-        let i = 0;
-        i < this.checkItems[itemIndex]["check_elements"].length;
-        i++
-      ) {
-        if (this.checkItems[itemIndex]["check_elements"][i].rejected == 1) {
-          return;
-        }
-      }
-      this.checkItems[itemIndex].hasReject = false;
-    },
-    //selecting checklist change
-    async selectChange() {
-      const checklistId = deepCopy(this.finalDataSectionA.checklist);
-      if (checklistId == "") {
-        this.showSectionB == false;
-        return;
-      }
-      this.presentLoading("Loading Checklist ...");
-      console.log(this.getItemArrayById(checklistId));
-      this.checkItems = await services.getCheckItems(
-        this.getItemArrayById(checklistId)
-      );
-      console.log(this.checkItems);
-      this.showSectionB = true;
-      this.hideLoading();
-    },
-    getItemArrayById(id: any) {
-      for (let i = 0; i < this.checklists.length; i++) {
-        if (this.checklists[i].id == id) {
-          return this.checklists[i].check_items;
-        }
-      }
-      return;
-    },
-    findElementIndex(arr: any, element: any): number {
-      for (let i = 0; i < arr.length; i++) {
-        if (arr[i].name === element) {
-          return i;
-        }
-      }
-      return -1;
-    },
-    generateKey(len: number) {
-      let text = "";
-      const chars =
-        "abcdefghijklmnopqrstuvwxyz123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ";
-      for (let i = 0; i < len; i++) {
-        text += chars.charAt(Math.floor(Math.random() * chars.length));
-      }
-      return "savedId " + text;
-    },
-    formatDate() {
-      const d = new Date();
-      let month = "" + (d.getMonth() + 1);
-      let day = "" + d.getDate();
-      const year = d.getFullYear();
-
-      if (month.length < 2) month = "0" + month;
-      if (day.length < 2) day = "0" + day;
-
-      return [year, month, day].join("-");
+      });
+      console.log(this.checklists);
     },
     async presentLoading(msg: string) {
       this.loading = await loadingController.create({
@@ -420,17 +269,28 @@ export default defineComponent({
     async hideLoading() {
       await this.loading.dismiss();
     },
+    formatDate(date) {
+      const d = new Date(date);
+      let month = "" + (d.getMonth() + 1);
+      let day = "" + d.getDate();
+      const year = d.getFullYear();
+
+      if (month.length < 2) month = "0" + month;
+      if (day.length < 2) day = "0" + day;
+
+      return [year, month, day].join("-");
+    },
     async init() {
-      this.initing = true;
       this.presentLoading("Loading...");
-      this.aircraftRegNos = await services.getAircraftRegNo();
-      this.aircraftTypes = await services.getAircraftType();
       this.inspectedBys = await services.getInspectedBy();
       this.checklists = await services.getChecklist();
-      this.engineTypes = await services.getEngineType();
+      this.checklists.forEach((element) => {
+        element.check_items.forEach((item) => {
+          item.checks = 0;
+          item.rejects = 0;
+        });
+      });
       this.customers = await services.getCustomer();
-      this.locations = await services.getLocation();
-      this.currentDate = this.formatDate();
       this.hideLoading();
     },
   },
@@ -495,6 +355,9 @@ ion-col {
 }
 .hardcodecol {
   background-color: #eef734;
+}
+.itemname {
+  background-color: #edf73473;
 }
 ion-text {
   font-size: 1.6vw;
