@@ -21,7 +21,7 @@
     </ion-header>
 
     <ion-content :fullscreen="true" ref="content">
-      <ion-grid>
+      <ion-grid class="ion-background">
         <ion-row>
           <ion-col col-12 class="section-title">
             <ion-text style="font-weight: bold"
@@ -279,9 +279,8 @@
                   style="
                     --ion-grid-columns: 10;
                     --ion-grid-column-padding: 1px;
-                    padding-top: 3vh;
-                    padding-bottom: 3vh;
                   "
+                  class="ion-background2"
                 >
                   <ion-row class="reject-title">
                     <ion-col size="4" style="text-align: center">
@@ -492,12 +491,11 @@ import { useRoute } from "vue-router";
 import { useRouter } from "vue-router";
 import { camera, trash, close, images, square, triangle } from "ionicons/icons";
 import { usePhotoGallery, Photo } from "@/composables/usePhotoGallery";
-import { Plugins, CameraResultType } from "@capacitor/core";
+import { Plugins, CameraResultType, CameraSource } from "@capacitor/core";
 import { isPlatform } from "@ionic/vue";
 import { storageRef } from "@/main";
 
-const { Camera } = Plugins;
-const { photos, takePhoto } = usePhotoGallery();
+
 
 export default defineComponent({
   name: "Home",
@@ -525,6 +523,8 @@ export default defineComponent({
       cssClass: "my-custom-interface",
     };
     const router = useRouter();
+    const { Camera } = Plugins;
+const { photos } = usePhotoGallery();
 
     return {
       options,
@@ -533,6 +533,7 @@ export default defineComponent({
       trash,
       close,
       router,
+      Camera
     };
   },
   data() {
@@ -570,16 +571,26 @@ export default defineComponent({
           },
         },
       ],
-      initialDataConfiguration: null as any,
     };
   },
   methods: {
     reset() {
-      this.$data = this.initialDataConfiguration;
+      this.showSectionB = false;
+      this.checkItems=[];
+      this.finalDataSectionA={
+        aircraftRegNo: "",
+        engineType: "",
+        aircraftType: "",
+        customerProgram: "",
+        location: "",
+        checklist: "",
+        date: "",
+      };
     },
     async takePhoto(itemIndex: any, rejectIndex: any) {
-      const image = await Camera.getPhoto({
-        quality: 90,
+      const image = await this.Camera.getPhoto({
+        source: CameraSource.Camera,
+        quality: 100,
         allowEditing: true,
         resultType: CameraResultType.Uri,
       });
@@ -935,5 +946,21 @@ ion-datetime {
 }
 .button-col {
   border-width: 0px 0px 0px 0px;
+}
+.ion-background{
+background-color: #59a1ff52;;
+  border-radius: 10px;
+  height: 210px;
+  margin: 8px;
+  width: 92vw !important;
+  padding: 0;}
+
+
+.ion-background2{
+  background-color: #ff3a3d50;;
+  border-radius: 10px;
+  height: 160px;
+  margin: 8px;
+  padding-top: 30px;
 }
 </style>

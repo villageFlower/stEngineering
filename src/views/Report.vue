@@ -246,11 +246,14 @@ export default defineComponent({
       );
       console.log(this.finalData);
       this.checklists.forEach(async (list) => {
+        list["check_items"].forEach(item => {
+          item.checks = 0
+          item.rejects = 0
+        });
         const res = await services.getReportData(list.id, this.finalData);
         console.log(res);
         res.forEach((item) => {
           for (let i = 0; i < item["sectionB"].length; i++) {
-            if(i==0){list.check_items[i].checks=0;list.check_items[i].rejects=0}
             list.check_items[i].checks += item.sectionB[i].checks;
             list.check_items[i].rejects += item.sectionB[i].rejects;
           }
