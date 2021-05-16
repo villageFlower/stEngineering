@@ -1,6 +1,6 @@
 # E-QSI Android portal
 
-Major project for TP X STEngineering(STEDAS)
+Major project for TP Dip IT AY2021/2022 
 
 ## Installation
 
