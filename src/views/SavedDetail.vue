@@ -206,10 +206,30 @@
         </ion-row>
         <ion-row v-for="(item, item_index) in checkItems" :key="item_index">
           <ion-col size="1" style="text-align: center">
-            <ion-text>{{ item_index + 1 }}</ion-text>
+            <ion-text>{{ item_index + 1 }}</ion-text> 
+
           </ion-col>
           <ion-col size="4">
             <ion-text>{{ item.check_item }}</ion-text>
+            <ion-button  style="
+                                height: 50%;
+                                width: 20%;
+                                float: right;
+                                padding: 0px;
+                                font-size: 1vw;
+                              "
+                              expand="full"
+                              color="success" @click="ngIfCtrl(item_index)" >Hide Reject </ion-button>
+
+                              <ion-button  style="
+                                height: 50%;
+                                width: 20%;
+                                float: right;
+                                padding: 0px;
+                                font-size: 1vw;
+                              "
+                              expand="full"
+                              color="success" @click="ngIfCtrlshow(item_index)" >Show Reject </ion-button>
           </ion-col>
 
           <ion-col size="7" style="--ion-grid-column-padding: 0px">
@@ -225,8 +245,15 @@
                 v-for="(element, element_index) in item.check_elements"
                 :key="element_index"
               >
+
+
                 <ion-item-divider v-if="element_index != 0"></ion-item-divider>
                 <ion-col size="3" class="col-in-col-1">
+
+
+
+
+                              
                   <ion-text>{{ element.name }}</ion-text>
                 </ion-col>
                 <ion-col
@@ -270,9 +297,11 @@
           </ion-col>
 
           <div v-if="item.hasReject == true" style="width: 100%">
+            <div 
+            v-for="(reject, reject_index) in item.rejected"
+              :key="reject_index">
             <ion-row
-              v-for="(reject, reject_index) in item.rejected"
-              :key="reject_index"
+              v-if="!item.finalRejected[reject_index].hide"
             >
               <ion-col size="10" class="reject-box">
                 <ion-grid
@@ -281,8 +310,11 @@
                     --ion-grid-column-padding: 1px;
                   "
                   class="ion-background2"
+                  
                 >
-                  <ion-row class="reject-title">
+
+              
+                  <ion-row class="reject-title" >
                     <ion-col size="4" style="text-align: center">
                       <ion-text style="color: white">Rejected</ion-text>
                     </ion-col>
@@ -363,8 +395,10 @@
                             size="4"
                             style="border-width: 0px 0px 1px 1px"
                           >
-                            <ion-text style="padding-left: 1px"
-                              >[XXXX]</ion-text
+                            <ion-input style="padding-left: 1px"
+                            :value="item.finalRejected[reject_index].staffResponsibility"
+                              v-model="item.finalRejected[reject_index].staffResponsibility"
+                              ></ion-input
                             >
                           </ion-col>
                         </ion-row>
@@ -409,7 +443,8 @@
                         </ion-row>
                         <ion-row>
                           <ion-col style="border: 0px" size="10"
-                            ><ion-input></ion-input
+                            ><ion-input :value="item.finalRejected[reject_index].remarks"
+                             v-model="item.finalRejected[reject_index].remarks"></ion-input
                           ></ion-col>
                           <ion-col style="border: 0px" size="2">
                             <ion-button
@@ -440,6 +475,7 @@
                 ></ion-img>
               </ion-col>
             </ion-row>
+            </div>
           </div>
         </ion-row>
 
@@ -688,6 +724,7 @@ export default defineComponent({
           trade: "",
           subCategory: "",
           mostProbableCause: "",
+          remarks:"",
         });
         return;
       }
@@ -818,6 +855,17 @@ export default defineComponent({
 
       this.hideLoading();
     },
+    ngIfCtrl(itemIndex){
+  this.checkItems[itemIndex].finalRejected.forEach(reject => {
+    reject.hide = true
+  });
+},
+
+ngIfCtrlshow(itemIndex){
+  this.checkItems[itemIndex].finalRejected.forEach(reject => {
+    reject.hide = false
+  });
+},
   },
   ionViewDidEnter() {
     this.init();

@@ -1,0 +1,33 @@
+[
+    {
+        "id":1,
+        "name":"facilities",
+        "check_items":[
+            {
+                "name":"Fire Protection System",
+                "check_elements":[
+                    {
+                        "name":"Fire Extinguisher",
+                        "check":0,
+                        "reject":0,
+                        "most_probable_cause":["D1.1 –  signed off before work completion","D1.2 –  No progressive signed off after work completed"],
+                        "sub_category":["C1 - Validity","C2 – Limitation"],
+                        "staff_responsible":"",
+                        "trade":["AC","SM"],
+                        "remark":""
+                    },
+                    {
+                        "name":"Fire Hose Reel",
+                        "check":0,
+                        "reject":0,
+                        "most_probable_cause":["D1.1 –  signed off before work completion","D1.2 –  No progressive signed off after work completed"],
+                        "sub_category":["C1 - Validity","C2 – Limitation"],
+                        "staff_responsible":"",
+                        "trade":["AC","SM"],
+                        "remark":""
+                    }
+                ]
+            }
+        ]
+    }
+]
