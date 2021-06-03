@@ -9,16 +9,17 @@
       <ion-header>
         <ion-toolbar>
           <ion-title
-            style="text-align: center; font-weight: bold; font-size: 1.6vw"
+            style="text-align: center; font-weight: bold; font-size: 20px"
           >
             STEDAS
           </ion-title>
         </ion-toolbar>
       </ion-header>
       <ion-content>
-        <ion-list>
+        <ion-list >
           <ion-item>
             <ion-button
+            style="font-size:20px;"
               expand="full"
               fill="clear"
               @click="routeTo('/home')"
@@ -26,10 +27,11 @@
             >
           </ion-item>
           <ion-item>
-            <ion-button expand="full" fill="clear" @click="routeTo('/report')">Report</ion-button>
+            <ion-button style="font-size:20px;" expand="full" fill="clear" @click="routeTo('/report')">Report</ion-button>
           </ion-item>
           <ion-item>
             <ion-button
+            style="font-size:20px;"
               expand="full"
               fill="clear"
               @click="routeTo('/saved')"
@@ -38,6 +40,7 @@
           </ion-item>
           <ion-item>
             <ion-button
+            style="font-size:20px;"
               expand="full"
               fill="clear"
               @click="routeTo('/submissions')"

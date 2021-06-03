@@ -1,0 +1,78 @@
+[
+    {
+        "id": 1,
+        "name": "PFS"
+    },
+    {
+        "id": 2,
+        "name": "HFS"
+    },
+    {
+        "id": 3,
+        "name": "SYFC"
+    },
+    {
+        "id": 4,
+        "name": "SP Comms"
+    },
+    {
+        "id": 6,
+        "name": "NH Depot"
+    },
+    {
+        "id": 7,
+        "name": "SP Depot"
+    },
+    {
+        "id": 8,
+        "name": "RWC"
+    },
+    {
+        "id": 9,
+        "name": "F-50 Comms"
+    },
+    {
+        "id": 10,
+        "name": "MRTT"
+    },
+    {
+        "id": 11,
+        "name": "C130 Comms"
+    },
+    {
+        "id": 12,
+        "name": "F16 ug"
+    },
+    {
+        "id": 13,
+        "name": "CH47SD"
+    },
+    {
+        "id": 14,
+        "name": "C130 Depot"
+    },
+    {
+        "id": 15,
+        "name": "L382"
+    },
+    {
+        "id": 16,
+        "name": "F16 Comms"
+    },
+    {
+        "id": 17,
+        "name": "FWP"
+    },
+    {
+        "id": 18,
+        "name": "AH/CH Depot"
+    },
+    {
+        "id": 19,
+        "name": "AO"
+    },
+    {
+        "id": 20,
+        "name": "ED"
+    }
+]

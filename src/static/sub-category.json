@@ -1,0 +1,826 @@
+[
+    {
+        "id": 1,
+        "name": "D1 - No Progressive Sign-off / Signed-off before work completion / Incorrect Sign Off Practices"
+    },
+    {
+        "id": 2,
+        "name": "D2 - Incomplete / Inadequate Records (No Reference / Revision / Batch Number)"
+    },
+    {
+        "id": 3,
+        "name": "D3 - Incorrect Records / Approved Data & Reference Data Attachments"
+    },
+    {
+        "id": 4,
+        "name": "D4 - Discrepant / Uncontrolled Document"
+    },
+    {
+        "id": 5,
+        "name": "D5 - Certification of Release to Service (CRS) After Maintenance"
+    },
+    {
+        "id": 6,
+        "name": "C1 - Validity"
+    },
+    {
+        "id": 7,
+        "name": "C2 – Limitation"
+    },
+    {
+        "id": 8,
+        "name": "C3 - Authority Approval Rating"
+    },
+    {
+        "id": 9,
+        "name": "C4 - Capability Listing"
+    },
+    {
+        "id": 10,
+        "name": "E1 – Defective"
+    },
+    {
+        "id": 8,
+        "name": "E2 – Layout of Controls / Displays"
+    },
+    {
+        "id": 9,
+        "name": "E3 – Calibrated / NCR Tool / Equipment"
+    },
+    {
+        "id": 10,
+        "name": "E4 – Unavailable of Task specific tools"
+    },
+    {
+        "id": 11,
+        "name": "E5 - Identification number of Tool / Equipment"
+    },
+    {
+        "id": 12,
+        "name": "E6 – Tool calibration records"
+    },
+    {
+        "id": 13,
+        "name": "E7 – Tool Control"
+    },
+    {
+        "id": 14,
+        "name": "E8 – Permit to operate equipment"
+    },
+    {
+        "id": 15,
+        "name": "E9 – Safety use of Equipment / Stand / Guard"
+    },
+    {
+        "id": 16,
+        "name": "E10 – Safety use of PPE"
+    },
+    {
+        "id": 17,
+        "name": "T1 – Unavailable / Inaccessible"
+    },
+    {
+        "id": 18,
+        "name": "T2 – Incorrect / in Conflict"
+    },
+    {
+        "id": 19,
+        "name": "T3 – Uncontrolled"
+    },
+    {
+        "id": 20,
+        "name": "F1 - High Noise Level Exposure"
+    },
+    {
+        "id": 21,
+        "name": "F2 – Weather Exposure (Heat / Humidity / Wind / Rain)"
+    },
+    {
+        "id": 22,
+        "name": "F3 – Lighting "
+    },
+    {
+        "id": 23,
+        "name": "F4 - Housekeeping / Storage / Cleanliness"
+    },
+    {
+        "id": 24,
+        "name": "F5 – Hazardous / Toxic substance segregation"
+    },
+    {
+        "id": 25,
+        "name": "F6 – Utilities ( Electrical power / Water / Compressed air / Grounding Point)"
+    },
+    {
+        "id": 26,
+        "name": "F7 – Fire Protection"
+    },
+    {
+        "id": 27,
+        "name": "F8 – Ventilation"
+    },
+    {
+        "id": 28,
+        "name": "F9 - Markings / Labels / Placards / Signage for Segregation"
+    },
+    {
+        "id": 29,
+        "name": "W1 - Installation / Rigging / Adjustment / Test Discrepancies"
+    },
+    {
+        "id": 30,
+        "name": "W2 - Security Discrepancies / Loose Parts / Leaks"
+    },
+    {
+        "id": 31,
+        "name": "W3 - Incorrect Assembly / Wrong PN fitted"
+    },
+    {
+        "id": 32,
+        "name": "W4 - Poor finishing / Corrsion Prevention - Paint work, sealant, CIC application etc."
+    },
+    {
+        "id": 33,
+        "name": "P1 - Maintenance Practices"
+    },
+    {
+        "id": 34,
+        "name": "P2 - FOD Control"
+    },
+    {
+        "id": 35,
+        "name": "P3 - Manpower"
+    },
+    {
+        "id": 36,
+        "name": "P4 - Safety Practices"
+    },
+    {
+        "id": 37,
+        "name": "P5 - task approval forms"
+    },
+    {
+        "id": 38,
+        "name": "A1.1 - Training SOP"
+    },
+    {
+        "id": 39,
+        "name": "A1.2 - Terms of reference for training dept, section, personnel"
+    },
+    {
+        "id": 40,
+        "name": "A1.3 - Training Plan and execution"
+    },
+    {
+        "id": 41,
+        "name": "A1.4 - Induction Programme - Include Department GAIR and Company's SQBNs"
+    },
+    {
+        "id": 42,
+        "name": "A1.5 - Continuous Trade Learning (CTL)"
+    },
+    {
+        "id": 43,
+        "name": "A1.6 - Authorisation & Accuracy Of Records"
+    },
+    {
+        "id": 44,
+        "name": "A1.7 - Others"
+    },
+    {
+        "id": 45,
+        "name": "B1.1 - Inventory list vs physical holding"
+    },
+    {
+        "id": 46,
+        "name": "B1.2 - Proper labelling & identification of component"
+    },
+    {
+        "id": 47,
+        "name": "B1.3 - Storage & Life of rubberized items"
+    },
+    {
+        "id": 48,
+        "name": "B1.4 - Proper segregation of different categories of items"
+    },
+    {
+        "id": 49,
+        "name": "B1.5 - Practice FIFO for life items"
+    },
+    {
+        "id": 50,
+        "name": "B1.6 - Storage layout & condition"
+    },
+    {
+        "id": 51,
+        "name": "B1.7 - Components processes for maintenance / retification / repair"
+    },
+    {
+        "id": 52,
+        "name": "B1.8 - Technical spares management"
+    },
+    {
+        "id": 53,
+        "name": "B1.9 - Bench stock management"
+    },
+    {
+        "id": 54,
+        "name": "B1.10 - IH account management"
+    },
+    {
+        "id": 55,
+        "name": "B1.11 - Controlled Equipment Management"
+    },
+    {
+        "id": 56,
+        "name": "B1.12 - Fix Assets Management"
+    },
+    {
+        "id": 57,
+        "name": "B1.13 - Others"
+    },
+    {
+        "id": 58,
+        "name": "C1.1 - Plan / Frequency"
+    },
+    {
+        "id": 59,
+        "name": "C1.2 - Coverage"
+    },
+    {
+        "id": 60,
+        "name": "C1.3 - Execution of plan"
+    },
+    {
+        "id": 61,
+        "name": "C1.4 - Depth of findings and finding rate"
+    },
+    {
+        "id": 62,
+        "name": "C1.5 - Adequacy of Containment, Corrective and Preventive Actions"
+    },
+    {
+        "id": 63,
+        "name": "C1.6 - Verification and timely closure"
+    },
+    {
+        "id": 64,
+        "name": "C1.7 - Sharing of self-check report"
+    },
+    {
+        "id": 65,
+        "name": "C1.8 - Trend analysis"
+    },
+    {
+        "id": 66,
+        "name": "C1.9 - Annual plan review"
+    },
+    {
+        "id": 67,
+        "name": "C1.10 - Others"
+    },
+    {
+        "id": 68,
+        "name": "D1.1 - Check documents stated in SQN/Flight Vol 3"
+    },
+    {
+        "id": 69,
+        "name": "D1.2 - Accuracy and completeness of documents and records"
+    },
+    {
+        "id": 70,
+        "name": "D1.3 - Timely documentation of work done in F1400 & worksheet"
+    },
+    {
+        "id": 71,
+        "name": "D1.4 - Sampling checks on all maintenance records"
+    },
+    {
+        "id": 72,
+        "name": "D1.5 - A/C Weight and Balance records"
+    },
+    {
+        "id": 73,
+        "name": "D1.6 - Archived Documents in MCF"
+    },
+    {
+        "id": 74,
+        "name": "D1.7 - Others"
+    },
+    {
+        "id": 75,
+        "name": "E1.1 - System to track GSE (Equipment status & maintenance)"
+    },
+    {
+        "id": 76,
+        "name": "E1.2 - Inventory list (SOE) vs physical holding"
+    },
+    {
+        "id": 77,
+        "name": "E1.3 -  Inadequate - Equipment"
+    },
+    {
+        "id": 78,
+        "name": "E1.4 - Management of loan tools and records"
+    },
+    {
+        "id": 79,
+        "name": "E1.5 - Records of periodic checks"
+    },
+    {
+        "id": 80,
+        "name": "E1.6 - Equipment logbook for Class 1 equipment"
+    },
+    {
+        "id": 81,
+        "name": "E1.7 - STI / MOD records of GSE"
+    },
+    {
+        "id": 82,
+        "name": "E1.8 - Condition and records of Lifting Devices"
+    },
+    {
+        "id": 83,
+        "name": "E1.9 - Others"
+    },
+    {
+        "id": 84,
+        "name": "F1.1 - Building & Facilities Safety"
+    },
+    {
+        "id": 85,
+        "name": "F1.2 - Special building, Danger Buildings and Facilities"
+    },
+    {
+        "id": 86,
+        "name": "F1.3 - Comms & Server Room"
+    },
+    {
+        "id": 87,
+        "name": "F1.4 - Air Compressor Room"
+    },
+    {
+        "id": 88,
+        "name": "F1.5 - Management of munitions & exploaives"
+    },
+    {
+        "id": 89,
+        "name": "F1.6 - Management of POL / HAZMAT"
+    },
+    {
+        "id": 90,
+        "name": "F1.7 - Lightning Protection System (LPS)"
+    },
+    {
+        "id": 91,
+        "name": "F1.8 - Ground / Earthing Points"
+    },
+    {
+        "id": 92,
+        "name": "F1.9 - Electrical / Equipment / Comms Earth"
+    },
+    {
+        "id": 93,
+        "name": "F1.10 - Housekeeping"
+    },
+    {
+        "id": 94,
+        "name": "F1.11 - Hot works"
+    },
+    {
+        "id": 95,
+        "name": "F1.12 - Working at Heights"
+    },
+    {
+        "id": 96,
+        "name": "F1.13 - Lifting Operations"
+    },
+    {
+        "id": 97,
+        "name": "F1.14 - Confined Spaces"
+    },
+    {
+        "id": 98,
+        "name": "F1.15 - Work-stand / Platform / Docking"
+    },
+    {
+        "id": 99,
+        "name": "F1.16 - Pressurized Cylinder"
+    },
+    {
+        "id": 100,
+        "name": "F1.17 - Compressed Air"
+    },
+    {
+        "id": 101,
+        "name": "F1.18 - Manual Handling / Ergonomics"
+    },
+    {
+        "id": 102,
+        "name": "F1.19 - Ionizing & Non-ionizing radiation (High Power laser / Ultrasonic tank / X-Ray / Radio-active material)"
+    },
+    {
+        "id": 103,
+        "name": "F1.20 - Environmental"
+    },
+    {
+        "id": 104,
+        "name": "F1.21 - Contractor and Visitor Management"
+    },
+    {
+        "id": 105,
+        "name": "F1.22 - Others"
+    },
+    {
+        "id": 106,
+        "name": "H1.1 - Plan / Frequency"
+    },
+    {
+        "id": 107,
+        "name": "H1.2 - Sharing & creating awareness of lessons"
+    },
+    {
+        "id": 108,
+        "name": "H1.3 - Follow-up actions"
+    },
+    {
+        "id": 109,
+        "name": "H1.4 - Closure of HR duration"
+    },
+    {
+        "id": 110,
+        "name": "H1.5 - Term of Reference for BBS I/C"
+    },
+    {
+        "id": 111,
+        "name": "H1.6 - BBS Training"
+    },
+    {
+        "id": 112,
+        "name": "H1.7 - Implementation of BBS Programme"
+    },
+    {
+        "id": 113,
+        "name": "H1.8 - Monthly BBS submission"
+    },
+    {
+        "id": 114,
+        "name": "H1.9 - Others"
+    },
+    {
+        "id": 115,
+        "name": "K1.1 - Safety Induction Programme (SIP)"
+    },
+    {
+        "id": 116,
+        "name": "K1.2 - Safety Appointment Holder Training"
+    },
+    {
+        "id": 117,
+        "name": "K1.3 - Safety Lectures"
+    },
+    {
+        "id": 118,
+        "name": "K1.4 - Safety Work Practices"
+    },
+    {
+        "id": 119,
+        "name": "K1.5 - Others"
+    },
+    {
+        "id": 120,
+        "name": "L1.1 - Keys Security"
+    },
+    {
+        "id": 121,
+        "name": "L1.2 - Infrastructure Security"
+    },
+    {
+        "id": 122,
+        "name": "L1.3 - Assets Security"
+    },
+    {
+        "id": 123,
+        "name": "L1.4 - Others"
+    },
+    {
+        "id": 124,
+        "name": "M1.1 - Key Processes / Key Performace Indicators (KPI)"
+    },
+    {
+        "id": 125,
+        "name": "M1.2 - Mangement Review / Periodic Logistic Meeting"
+    },
+    {
+        "id": 126,
+        "name": "M1.3 - Resource Management"
+    },
+    {
+        "id": 127,
+        "name": "M1.4 - Information Dissemination & Communication Processes (Internal)"
+    },
+    {
+        "id": 128,
+        "name": "M1.5 - Information Dissemination & Communication Processes (External)"
+    },
+    {
+        "id": 129,
+        "name": "M1.6 - Logistics Support for Flying Operations (Command and Control Processes)"
+    },
+    {
+        "id": 130,
+        "name": "M1.7 - Logistics Support for Flying Operations (Communication Processes)"
+    },
+    {
+        "id": 131,
+        "name": "M1.8 - Defect Management"
+    },
+    {
+        "id": 132,
+        "name": "M1.9 - Others"
+    },
+    {
+        "id": 133,
+        "name": "N1.1 - Anti Virus Updates & Scans"
+    },
+    {
+        "id": 134,
+        "name": "N1.2 - Password Control"
+    },
+    {
+        "id": 135,
+        "name": "N1.3 - Others (Elaborate):______"
+    },
+    {
+        "id": 136,
+        "name": "P1.1 - Inventory list vs physical holding"
+    },
+    {
+        "id": 137,
+        "name": "P1.2 - Status of T.O. amendment"
+    },
+    {
+        "id": 138,
+        "name": "P1.3 - Amendment / PCOR"
+    },
+    {
+        "id": 139,
+        "name": "P1.4 - Incorporating of amendment within timeline"
+    },
+    {
+        "id": 140,
+        "name": "P1.5 - Amendment & dissemination processes"
+    },
+    {
+        "id": 141,
+        "name": "P1.6 - Proper handling of Secret & Confidential publications"
+    },
+    {
+        "id": 142,
+        "name": "P1.7 - TEM / ITEM Management"
+    },
+    {
+        "id": 143,
+        "name": "P1.8 - Others"
+    },
+    {
+        "id": 144,
+        "name": "Q1.1 - MT RAM & Authorisation of Trips"
+    },
+    {
+        "id": 145,
+        "name": "Q1.2 - BOC / AOC / Weekly preventive tasks"
+    },
+    {
+        "id": 146,
+        "name": "Q1.3 - Driver Training and Authorisation"
+    },
+    {
+        "id": 147,
+        "name": "Q1.4 - Vehicle handling and driving safety"
+    },
+    {
+        "id": 148,
+        "name": "Q1.5 - Others"
+    },
+    {
+        "id": 149,
+        "name": "R1.1 - Fire Order and Evacuation Plan"
+    },
+    {
+        "id": 150,
+        "name": "R1.2 - Fire Drill"
+    },
+    {
+        "id": 151,
+        "name": "R1.3 - FAFA Training"
+    },
+    {
+        "id": 152,
+        "name": "R1.4 - Fire Fighting Appliance / Equipment"
+    },
+    {
+        "id": 153,
+        "name": "R1.5 - Others"
+    },
+    {
+        "id": 154,
+        "name": "S1.1 - SOP Coverage"
+    },
+    {
+        "id": 155,
+        "name": "S1.2 - Clear & explict"
+    },
+    {
+        "id": 156,
+        "name": "S1.3 - Formatting and correct references"
+    },
+    {
+        "id": 157,
+        "name": "S1.4 - Amendment & dissemination processes"
+    },
+    {
+        "id": 158,
+        "name": "S1.5 - Others"
+    },
+    {
+        "id": 159,
+        "name": "T1.1 - Annual Inventory check - Discrepancies and Follow up"
+    },
+    {
+        "id": 160,
+        "name": "T1.2 - Inadequate - Tools & TMDE"
+    },
+    {
+        "id": 161,
+        "name": "T1.3 - Management of loan tools and records"
+    },
+    {
+        "id": 162,
+        "name": "T1.4 - Tools & TMDE under Calibration Before Use (CBU)"
+    },
+    {
+        "id": 163,
+        "name": "T1.5 - Lost and Damage tool management"
+    },
+    {
+        "id": 164,
+        "name": "T1.6 - Scrap tool / BER process"
+    },
+    {
+        "id": 165,
+        "name": "T1.7 - Local fab and modified tool management"
+    },
+    {
+        "id": 166,
+        "name": "T1.8 - Tools accounting and control process"
+    },
+    {
+        "id": 167,
+        "name": "T1.9 - Tool crib security"
+    },
+    {
+        "id": 168,
+        "name": "T1.10 - Latest inventory list of tools vs physical holding"
+    },
+    {
+        "id": 169,
+        "name": "T1.11 - Tools identification and condition"
+    },
+    {
+        "id": 170,
+        "name": "T1.12 - Monthly tools check record"
+    },
+    {
+        "id": 171,
+        "name": "T1.13 - Storage condition"
+    },
+    {
+        "id": 172,
+        "name": "T1.14 - Others"
+    },
+    {
+        "id": 173,
+        "name": "V1.1 - Safety Organization & Structure"
+    },
+    {
+        "id": 174,
+        "name": "V1.2 - Safety Work plan"
+    },
+    {
+        "id": 175,
+        "name": "V1.3 - Safety Meeting"
+    },
+    {
+        "id": 176,
+        "name": "V1.4 - FAIRs / GAIRs /HAZARDs"
+    },
+    {
+        "id": 177,
+        "name": "V1.5 - SOBD / EODD"
+    },
+    {
+        "id": 178,
+        "name": "V1.6 - RAM / TSA"
+    },
+    {
+        "id": 179,
+        "name": "V1.7 - RSAF Safety Day (RSD) "
+    },
+    {
+        "id": 180,
+        "name": "V1.8 - Safety Self Check Programme"
+    },
+    {
+        "id": 181,
+        "name": "V1.9 - Others"
+    },
+    {
+        "id": 182,
+        "name": "W1.1 - Availability Of Authorised Work Instructions"
+    },
+    {
+        "id": 183,
+        "name": "W1.2 - Compliance to work instructions"
+    },
+    {
+        "id": 184,
+        "name": "W1.3 - Authorised method / Equipment / tools "
+    },
+    {
+        "id": 185,
+        "name": "W1.4 - Workmanship "
+    },
+    {
+        "id": 186,
+        "name": "W1.5 - Safety / Caution / Warning Note Awareness"
+    },
+    {
+        "id": 187,
+        "name": "W1.6 - Control of remove parts / components"
+    },
+    {
+        "id": 188,
+        "name": "W1.7 - Material Used & Demand in ES/SAP"
+    },
+    {
+        "id": 189,
+        "name": "W1.8 - In process and final inspection & verification"
+    },
+    {
+        "id": 190,
+        "name": "W1.9 - Documentation / ES / Book out / Issue"
+    },
+    {
+        "id": 191,
+        "name": "W1.10 - Authorisation of Person performing task"
+    },
+    {
+        "id": 192,
+        "name": "W1.11 - Use of non intrinsic safe item in Potential Explosive areas"
+    },
+    {
+        "id": 193,
+        "name": "W1.12 - Others"
+    },
+    {
+        "id": 194,
+        "name": "X1.1 - Safety Recognition and Awards"
+    },
+    {
+        "id": 195,
+        "name": "X1.2 - Safety Boards / Posters"
+    },
+    {
+        "id": 196,
+        "name": "X1.3 - Safety Theme"
+    },
+    {
+        "id": 197,
+        "name": "X1.4 - FOD Prevention"
+    },
+    {
+        "id": 198,
+        "name": "X1.5 - Others"
+    },
+    {
+        "id": 199,
+        "name": "Z1.1 - Personal Protective Equipment (PPE)"
+    },
+    {
+        "id": 200,
+        "name": "Z1.2 - Emergency Preparedness & Response Plan"
+    },
+    {
+        "id": 201,
+        "name": "Z1.3 - First Aid, Heart-Saver and Buddy Aid"
+    },
+    {
+        "id": 201,
+        "name": "Z1.4 - Policy / Objectives / Hazard Identification & Risk Assessment"
+    },
+    {
+        "id": 202,
+        "name": "Z1.5 - Others"
+    }
+]

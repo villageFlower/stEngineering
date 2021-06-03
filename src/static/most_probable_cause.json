@@ -1,0 +1,1174 @@
+[
+    {
+        "id": 1,
+        "name": "D1.1 –  Signed off before work completion"
+    },
+    {
+        "id": 2,
+        "name": "D1.2 –  No progressive signed off after work completed"
+    },
+    {
+        "id": 3,
+        "name": "D1.3 –  Signed off incompletely / inaccurately / inappropriately missing stamp / date / signature"
+    },
+    {
+        "id": 4,
+        "name": "D1.4 –  Undocumented maintenance"
+    },
+    {
+        "id": 5,
+        "name": "D1.5 – Independent Inspection / Duplicate Inspection / RII not carried out or carried out inappropriately"
+    },
+    {
+        "id": 6,
+        "name": "D1.6 – Illegible hand writing / name / staff no. / stamp / date"
+    },
+    {
+        "id": 7,
+        "name": "D2.1 – Incomplete / incorrect / missing entry of Technical Data / Material / Calibrated Tools & Equipment"
+    },
+    {
+        "id": 8,
+        "name": "D2.2 – Inspection result / measurement data not recorded"
+    },
+    {
+        "id": 9,
+        "name": "D2.3 -  Certification of maintenance work document without current approved data referenced"
+    },
+    {
+        "id": 10,
+        "name": "D2.4 -  Certification of completion of maintenance without any maintenance data reference source e.g. AMM, SRM"
+    },
+    {
+        "id": 11,
+        "name": "D3.1 –  Incomplete / incorrect / missing supporting documentation attached"
+    },
+    {
+        "id": 12,
+        "name": "D3.2 –  Incorrect cross referencing of documentation procedure carried out"
+    },
+    {
+        "id": 13,
+        "name": "D3.3 –  ‘Not Applicable’, ‘Not Required’, ‘Previously Complied with’ documentation procedure incorrectly carried out without substantiation"
+    },
+    {
+        "id": 14,
+        "name": "D4.1 – Usage of uncontrolled duplicate copy of routine or non-routine cards   "
+    },
+    {
+        "id": 15,
+        "name": "D4.2 – Usage of uncontrolled working copies by maintenance personnel"
+    },
+    {
+        "id": 16,
+        "name": "D4.3 – Incorrect correction procedure for entries carried out"
+    },
+    {
+        "id": 17,
+        "name": "D5.1 – Blocks in the CRS, CRS-SMI, MR, maintenance document incompletely or inaccurately filled"
+    },
+    {
+        "id": 18,
+        "name": "D5.2 – Unable to complete all maintenance ordered and CRS issued but such facts are not entered in the CRS and/or the deferred defect list was not raised."
+    },
+    {
+        "id": 19,
+        "name": "D5.3 – No AMO approval number in the CRS statement."
+    },
+    {
+        "id": 20,
+        "name": "D5.4 – Incomplete certificate of release to service statement  "
+    },
+    {
+        "id": 21,
+        "name": "C1-1 – Company authorization not renewed on time"
+    },
+    {
+        "id": 22,
+        "name": "C1-2 – Staff’s exercise certification privileges with expired/ revoked/ suspended company authorisation"
+    },
+    {
+        "id": 23,
+        "name": "C2-1 – Company authorisation limitation is outside the limitations of the Civil Aviation Authority license"
+    },
+    {
+        "id": 24,
+        "name": "C2-2 – Not authorized to exercise certification privileges for the maintenance function"
+    },
+    {
+        "id": 25,
+        "name": "C3-1 – Company authorisation aircraft type/ group ratings is outside of the approved aircraft type/ group rating of the Civil Aviation Authority license"
+    },
+    {
+        "id": 26,
+        "name": "C3-2 – Exercise certification privileges outside the scope of the company authorisation"
+    },
+    {
+        "id": 27,
+        "name": "C4-1 – Exercise certification privileges for articles/ parts/ materials not in the approved capability listing"
+    },
+    {
+        "id": 28,
+        "name": "E1-2 – Tool/Equipment sub-parts/ accessories/ contents not available"
+    },
+    {
+        "id": 29,
+        "name": "E1-3 – Tool/Equipment not free from contaminants prior to storage"
+    },
+    {
+        "id": 30,
+        "name": "E1-4 – Tool/Equipment control box/ operating instructions/ safety markings found illegible"
+    },
+    {
+        "id": 31,
+        "name": "E1-5 – Tool/Equipment IMTE calibration decal missing/ damaged"
+    },
+    {
+        "id": 32,
+        "name": "E2-1 – Tool/Equipment not placed in designated storage area/ shadow board."
+    },
+    {
+        "id": 33,
+        "name": "E2-2 – Tool/Equipment designated storage area / shadow board found  faded/ damaged"
+    },
+    {
+        "id": 34,
+        "name": "E2-4 – Tool/Equipment not designated storage area/ shadow board not assigned"
+    },
+    {
+        "id": 35,
+        "name": "E2-5 – Tool/Equipment unavailable due to loaned out, but Loan tag not placed against shadow board"
+    },
+    {
+        "id": 36,
+        "name": "E2-6 – Tool/Equipment unavailable due to damaged, but White Tag not placed against shadow board"
+    },
+    {
+        "id": 37,
+        "name": "E2-7 – Tool/Equipment unavailable due to Missing/ Lost, but Red Tag not placed against shadow board"
+    },
+    {
+        "id": 38,
+        "name": "E2-8 – Tool/Equipment unavailable due to send out for calibration, but Blue Tag not placed against shadow board"
+    },
+    {
+        "id": 39,
+        "name": "E3-1 – Tool/Equipment out of calibration"
+    },
+    {
+        "id": 40,
+        "name": "E3-2 – Tool/Equipment not serviced"
+    },
+    {
+        "id": 41,
+        "name": "E3-3 – NCR sticker not available"
+    },
+    {
+        "id": 42,
+        "name": "E3-4 – NCR Equipment Request form not available"
+    },
+    {
+        "id": 43,
+        "name": "E4-1 – Tool/Equipment specified in maintenance data not availabley"
+    },
+    {
+        "id": 44,
+        "name": "E4-2 – Approval for use of equivalent Tool/Equipment not available"
+    },
+    {
+        "id": 45,
+        "name": "E5-1 – Tool/Equipment identification number/ marking not carried out"
+    },
+    {
+        "id": 46,
+        "name": "E5-2 – Tool/Equipment found incorrect tool crib/ tool trolley/ tool box identification number/ marking"
+    },
+    {
+        "id": 47,
+        "name": "E5-3 – Tool/Equipment part number/ serial number found incorrectly identified."
+    },
+    {
+        "id": 48,
+        "name": "E6-1 – Tool/Equipment Certificate of Conformance/ calibration records not available"
+    },
+    {
+        "id": 49,
+        "name": "E6-2 – Tool/Equipment Certificate of Conformance / calibration records incomplete/ inaccurate"
+    },
+    {
+        "id": 50,
+        "name": "E7-1 – Tool Crib/ Trolley/ Box Daily Accountability Log sheet not available for inspection"
+    },
+    {
+        "id": 51,
+        "name": "E7-2 – Tool Crib/ Trolley/ Box Daily Accountability Log sheet not updated"
+    },
+    {
+        "id": 52,
+        "name": "E7-3 – Tool Crib/ Trolley/ Box not controlled for accessibility"
+    },
+    {
+        "id": 53,
+        "name": "E7-4 – Tool inventory checklist not endorsed"
+    },
+    {
+        "id": 54,
+        "name": "E7-5 – Tool inventory checklist not updated"
+    },
+    {
+        "id": 55,
+        "name": "E8-1 – Operator operate equipment with permit expired"
+    },
+    {
+        "id": 56,
+        "name": "E8-2 – Operator operate equipment with incorrect/ no permit"
+    },
+    {
+        "id": 57,
+        "name": "E9-1 – Equipment/ Stand not locked in placed"
+    },
+    {
+        "id": 58,
+        "name": "E9-2 - Equipment/ Stand safety railings not installed"
+    },
+    {
+        "id": 59,
+        "name": "E10-1 – Necessary PPE not worn by staff"
+    },
+    {
+        "id": 60,
+        "name": "T1-1 – Technical data was not available in the vicinity of the work area"
+    },
+    {
+        "id": 61,
+        "name": "T1-2 – Approval for deviation from technical data was unavailable"
+    },
+    {
+        "id": 62,
+        "name": "T1-3 – Fabrication of parts technical data was unavailable"
+    },
+    {
+        "id": 63,
+        "name": "T1-4 – Approval for major repair / alteration / modification was unavailable"
+    },
+    {
+        "id": 64,
+        "name": "T2-1 – Technical data used to perform maintenance was not current"
+    },
+    {
+        "id": 65,
+        "name": "T2-2 – Technical data was not accurately transcribed to maintenance work document"
+    },
+    {
+        "id": 66,
+        "name": "T3-1 – Technical data used was not controlled from the technical library"
+    },
+    {
+        "id": 67,
+        "name": "T3-2 – Technical Library control stamp was missing or incorrectly filled"
+    },
+    {
+        "id": 68,
+        "name": "T3-3 – Technical  data did not have “DOCUMENTS VALIDITY” stamp"
+    },
+    {
+        "id": 69,
+        "name": "T3-4 –  Technical data “DOCUMENTS VALIDITY” stamp was incorrectly filled"
+    },
+    {
+        "id": 70,
+        "name": "F1.1 Maintenance work carried out without adequate protection from noise distraction."
+    },
+    {
+        "id": 71,
+        "name": "F2.1 Maintenance work carried out without adequate protection from weather elements."
+    },
+    {
+        "id": 72,
+        "name": "F2.2 - Storage of aircraft components / parts / materials / tools / equipment in accordance to manufacturer’s requirement was not humidity / temperature controlled. "
+    },
+    {
+        "id": 73,
+        "name": "F3.1 -  Inadequate lighting to ensure each inspection and maintenance task can be carried out in an effective manner."
+    },
+    {
+        "id": 74,
+        "name": "F4.1 – Good housekeeping of the work area was not maintained."
+    },
+    {
+        "id": 75,
+        "name": "F4.2 - Containers for disposal of rubbish / debris were not cleared regularly."
+    },
+    {
+        "id": 76,
+        "name": "F4.3 Slippery / wet floor was not cleaned / covered with approved absorbent materials."
+    },
+    {
+        "id": 77,
+        "name": "F4.4 – The requirement for parts storage racks to keep out dust and other contaminants to a minimum was not complied."
+    },
+    {
+        "id": 78,
+        "name": "F4.5 – Inappropriate / Insufficient storage racks for holding aircraft parts / materials / tools / equipment. "
+    },
+    {
+        "id": 79,
+        "name": "F4.6 – Storage rack ESDS mats were not available or properly maintained."
+    },
+    {
+        "id": 80,
+        "name": "F5.1 – Waste solvent / fuel / oil drum was not closed."
+    },
+    {
+        "id": 81,
+        "name": "F5.2 – Waste solvent / fuel / oil drum was overflowing."
+    },
+    {
+        "id": 82,
+        "name": "F5.3 - Waste solvent / fuel / oil was disposed / drained into incorrect waste container."
+    },
+    {
+        "id": 83,
+        "name": "F1.6 - Electrical power conduit, cable or outlet was damaged."
+    },
+    {
+        "id": 84,
+        "name": "F6.2 – Water tap in hangar found leaking."
+    },
+    {
+        "id": 85,
+        "name": "F6.3 – Compressed air outlets found leaking / gauge corroded."
+    },
+    {
+        "id": 86,
+        "name": "F6.4 – Aircraft grounding point was unserviceable or servicing date overdue"
+    },
+    {
+        "id": 87,
+        "name": "F6.5 – Building ground point servicing date overdue."
+    },
+    {
+        "id": 88,
+        "name": "F7.1 -  Fire extinguisher was in unserviceable condition : - bottle pressure was low - damaged / corrosion bottle or safety pin -safety pin missing -fire extinguisher yearly servicing date was overdue"
+    },
+    {
+        "id": 89,
+        "name": "F7.2 -  Fire extinguisher sprinkler system was in unserviceable condition : - water leaking - yearly servicing date was overdue"
+    },
+    {
+        "id": 90,
+        "name": "F7.3 -  Fire hose reel was in unserviceable condition : - water was leaking - hose damaged - yearly servicing date was overdue"
+    },
+    {
+        "id": 91,
+        "name": "F7.4  - Monthly inspection of the fire extinguisher / sprinkler system / fire hose reel was not carried out"
+    },
+    {
+        "id": 92,
+        "name": "F7.5 - Fire lanes / emergency exits were obstructed"
+    },
+    {
+        "id": 93,
+        "name": "F7.6 – Access to the fire extinguisher / fire hose reel was obstructed"
+    },
+    {
+        "id": 94,
+        "name": "F8.1 – Air-conditioning equipment / portable fan / ventilation fan was unserviceable / damaged"
+    },
+    {
+        "id": 95,
+        "name": "F9.1  - Restricted access to storage rooms / facilities / tool crib / battery workshop was not identified"
+    },
+    {
+        "id": 96,
+        "name": "F9.2  - No signage for ensuring segregation of serviceable from unserviceable components, materials, tools and equipment"
+    },
+    {
+        "id": 97,
+        "name": "W1.1- RII / Independent / Duplicate Inspection was not carry out for aircraft critical control systems"
+    },
+    {
+        "id": 98,
+        "name": "W1.2- RII / Independent / Duplicate Inspection was not carry out by the appropriate category certifying staff"
+    },
+    {
+        "id": 99,
+        "name": "W1.3 – Damage / unserviceable aircraft parts installed on aircraft"
+    },
+    {
+        "id": 100,
+        "name": "W1.4 – Aircraft parts not installed"
+    },
+    {
+        "id": 101,
+        "name": "W2.1 – Aircraft access panel not fully secured"
+    },
+    {
+        "id": 102,
+        "name": "W2.2 – Fastener not fully tighten"
+    },
+    {
+        "id": 103,
+        "name": "W3.1 – Aircraft parts wrongly orientated"
+    },
+    {
+        "id": 104,
+        "name": "W4.1 – Parts of aircraft / surfaces were not protected as required during maintenance / repair"
+    },
+    {
+        "id": 105,
+        "name": "W4.2 - Inspection area not cleaned before inspection / after maintenance"
+    },
+    {
+        "id": 106,
+        "name": "W4.3 - Improper cleaning and preparation of the surface to be painted / finished"
+    },
+    {
+        "id": 107,
+        "name": "W4.4 - Paint found with sags, runs or spray dust"
+    },
+    {
+        "id": 108,
+        "name": "W4.5 – Greasing not performed on aircraft parts / components as required"
+    },
+    {
+        "id": 109,
+        "name": "P1.1 – Not proficient in the use of methods appropriate for the work being performed."
+    },
+    {
+        "id": 110,
+        "name": "P1.2 - Not proficient in the use of techniques appropriate for the work being performed."
+    },
+    {
+        "id": 111,
+        "name": "P1.3 - Not proficient in the use of maintenance practices appropriate for the work being performed."
+    },
+    {
+        "id": 112,
+        "name": "P1.4 - Not proficient in the use of standard operating procedure appropriate for the work being performed."
+    },
+    {
+        "id": 113,
+        "name": "P2.1 – Staff carried out task with inadequate protection against EWIS."
+    },
+    {
+        "id": 114,
+        "name": "P2.2 – Inadequate housekeeping after completion of each maintenance task"
+    },
+    {
+        "id": 115,
+        "name": "P3.1 –  Insufficient manpower for the maintenance task"
+    },
+    {
+        "id": 116,
+        "name": "P4.1 –  Circuit Breaker not pulled and tagged during maintenance task"
+    },
+    {
+        "id": 117,
+        "name": "P4.2 –  Signage/ barricade of critical maintenance task not comply"
+    },
+    {
+        "id": 118,
+        "name": "P4.3 – Caution/ Warning not comply during maintenance task"
+    },
+    {
+        "id": 119,
+        "name": "P5.1 – ‘Request for Authorisation to park aircraft (with fuel) in the hanger’ form not completed."
+    },
+    {
+        "id": 120,
+        "name": "P5.2 – ‘Critical Maintenance Process Task Checklist’ form not completed."
+    },
+    {
+        "id": 121,
+        "name": "B1.1.1 – Hazardous material inventory incorrect"
+    },
+    {
+        "id": 122,
+        "name": "B1.2.1 – TNB/FOM part label or Holding label annotated improperly"
+    },
+    {
+        "id": 123,
+        "name": "B1.4.1 – Intermingled bench, operating, or shop stock"
+    },
+    {
+        "id": 124,
+        "name": "B1.4.2 – Bench, operating, or shop stock bins labeled incorrectly"
+    },
+    {
+        "id": 125,
+        "name": "B1.5.1 – Out of date shelf life items"
+    },
+    {
+        "id": 126,
+        "name": "B1.7.1 – Cann Log not documented properly"
+    },
+    {
+        "id": 127,
+        "name": "B1.8.1 – Part (s) in Tail Number Bin/ Further on Maintenance (TNB/FOM) not logged in"
+    },
+    {
+        "id": 128,
+        "name": "B1.8.2 – Parts logged in, but missing from TNB/FOM"
+    },
+    {
+        "id": 129,
+        "name": "B1.8.3 – Improper ESD control"
+    },
+    {
+        "id": 130,
+        "name": "D1.2.1 – Incorrect clearing -by, inspected-by blocks or corrective action"
+    },
+    {
+        "id": 131,
+        "name": "D1.2.2 – Overdue inspections or time change items not transferred to A/C Forms (F1400-6)"
+    },
+    {
+        "id": 132,
+        "name": "D1.2.4 – Discrepancy not carried forward (dropped from forms)"
+    },
+    {
+        "id": 133,
+        "name": "D1.2.5 – Failure to perform /document rig, leak, confidence, or ops checks"
+    },
+    {
+        "id": 134,
+        "name": "D1.2.6 – Undocumented maintenance actions"
+    },
+    {
+        "id": 135,
+        "name": "D1.2.7 – More than one discrepancy entered per entry block (Section F1400-6)"
+    },
+    {
+        "id": 136,
+        "name": "D1.2.8 – Repeat, Recur And CND discrepancies not properly cleared"
+    },
+    {
+        "id": 137,
+        "name": "D1.2.9 – Servicing entries inaccurate and incomplete"
+    },
+    {
+        "id": 138,
+        "name": "D1.2.10 – IPI not documented -as required"
+    },
+    {
+        "id": 139,
+        "name": "D1.2.11 – Illegible entries"
+    },
+    {
+        "id": 140,
+        "name": "D1.2.12 – Improper  or inaccurate transcription of Airframe , Aircraft, Engine Hours"
+    },
+    {
+        "id": 141,
+        "name": "D1.2.13 – Missing TO references"
+    },
+    {
+        "id": 142,
+        "name": "D1.2.14 – Write-ups not cross referenced to main entries"
+    },
+    {
+        "id": 143,
+        "name": "D1.3.1 – Omission of required -6 inspection entries"
+    },
+    {
+        "id": 144,
+        "name": "E1.1.1 – Undocumented  maintenance actions"
+    },
+    {
+        "id": 145,
+        "name": "E1.1.2 – Inaccurate  or incomplete servicing entries"
+    },
+    {
+        "id": 146,
+        "name": "E1.1.3 – Illegible entries"
+    },
+    {
+        "id": 147,
+        "name": "E1.4.1 – Forms found deteriorated or not in document protector"
+    },
+    {
+        "id": 148,
+        "name": "E1.5.1 – Overdue inspections not documented on forms"
+    },
+    {
+        "id": 149,
+        "name": "F1.1.1 – Inadequate infrastructure and facilities."
+    },
+    {
+        "id": 150,
+        "name": "F1.1.2 – Infrastructure and facilities not maintained."
+    },
+    {
+        "id": 151,
+        "name": "F1.1.3 – Inadequate lighting condition."
+    },
+    {
+        "id": 152,
+        "name": "F1.1.4 – Inadequate ventilation condition."
+    },
+    {
+        "id": 153,
+        "name": "F1.6.1 – Chemicals not stored in designated area."
+    },
+    {
+        "id": 154,
+        "name": "F1.6.2 – Mandatory signs not displayed."
+    },
+    {
+        "id": 155,
+        "name": "F1.6.3 – Inadequate ventilation at area where chemicals are used."
+    },
+    {
+        "id": 156,
+        "name": "F1.6.4 – Chemicals not stored in approved cabinet."
+    },
+    {
+        "id": 157,
+        "name": "F1.6.5 – Incompatible chemicals stored in the same location (not segregated)."
+    },
+    {
+        "id": 158,
+        "name": "F1.6.6 – Non-approved containers used for decant."
+    },
+    {
+        "id": 159,
+        "name": "F1.6.7 – Decant containers not labelled."
+    },
+    {
+        "id": 160,
+        "name": "F1.6.8 – Chemical containers found deformed/bloated/compressed."
+    },
+    {
+        "id": 161,
+        "name": "F1.6.9 – No emergency procedures for chemical spillage."
+    },
+    {
+        "id": 162,
+        "name": "F1.6.10 – Employee not trained to handle chemical."
+    },
+    {
+        "id": 163,
+        "name": "F1.6.11 – Safety Data Sheet (SDS) expired and/or not available to employees."
+    },
+    {
+        "id": 164,
+        "name": "F1.6.12 – Secondary containment not available at storage area (110% of the largest container)."
+    },
+    {
+        "id": 165,
+        "name": "F1.6.13 - Spillage within secondary containment not cleared."
+    },
+    {
+        "id": 166,
+        "name": "F1.6.15 – Spill in HAZMAT storage locations"
+    },
+    {
+        "id": 167,
+        "name": "F1.6.16 – Illegible/missing container labels"
+    },
+    {
+        "id": 168,
+        "name": "F1.6.17 – Hazardous material inventory incorrect"
+    },
+    {
+        "id": 169,
+        "name": "F1.9.1 – Electrical equipment not inspected by qualified person. Note:- 6 Monthly - Category A equipment are portable electrical equipment used frequently in the Hangars, flight line and apron. - Yearly - Category B equipment are portable electrical equipment that are used in workshop environment. - For dual use equipment that may also be used in the Hangar/apron, they should be classified as Cat A."
+    },
+    {
+        "id": 170,
+        "name": "F1.9.2 – Electrical equipment with damaged plugs/sockets/cables."
+    },
+    {
+        "id": 171,
+        "name": "F1.9.3 – Cables are placed on wet area."
+    },
+    {
+        "id": 172,
+        "name": "F1.9.4 – PowerPoints found overloaded."
+    },
+    {
+        "id": 173,
+        "name": "F1.9.5 – Electrical equipment found with no Safety Mark logo."
+    },
+    {
+        "id": 174,
+        "name": "F1.9.6 – Safety guard missing and/or not available."
+    },
+    {
+        "id": 175,
+        "name": "F1.9.7 – Emergency Stop switch missing and/or not available."
+    },
+    {
+        "id": 176,
+        "name": "F1.9.8 – Lockout/Tag not in placed during maintenance, inspection and repair of equipment."
+    },
+    {
+        "id": 177,
+        "name": "F1.10.1 – Passageways, walkway and emergency escape routes are cluttered or blocked."
+    },
+    {
+        "id": 178,
+        "name": "F1.10.2 – Components and materials are stored or stacked in an unsafe manner."
+    },
+    {
+        "id": 179,
+        "name": "F1.10.3 – Poor cleanliness of the area (e.g. scraps, flammable materials not removed etc.)."
+    },
+    {
+        "id": 180,
+        "name": "F1.11.1 – Hot work permit not approved and/or displayed prior to start of any hot work."
+    },
+    {
+        "id": 181,
+        "name": "F1.11.2 – Incompatible works carried out simultaneously."
+    },
+    {
+        "id": 182,
+        "name": "F1.11.3 – Fire fighting equipment or attendant not available on site."
+    },
+    {
+        "id": 183,
+        "name": "F1.11.4 – Combustible material found near hot work area."
+    },
+    {
+        "id": 184,
+        "name": "F1.12.1 – Employees not trained to work at height."
+    },
+    {
+        "id": 185,
+        "name": "F1.12.2 – Permit to work (3 metres) not approved by authorized personnel and/or displayed."
+    },
+    {
+        "id": 186,
+        "name": "Employees not equipped with appropriate work at height equipment/PPE."
+    },
+    {
+        "id": 187,
+        "name": "F1.12.4 – Employees did not anchored their harness at the correct designated anchorage point."
+    },
+    {
+        "id": 188,
+        "name": "F1.12.5 – Work at height equipment/PPE found defective."
+    },
+    {
+        "id": 189,
+        "name": "F1.12.6 – Work at height equipment/PPE not maintained."
+    },
+    {
+        "id": 190,
+        "name": "F1.12.7 – Open side above 2 metres not guarded."
+    },
+    {
+        "id": 191,
+        "name": "F1.12.8 – Guard rails not available and/or fully extended."
+    },
+    {
+        "id": 192,
+        "name": "F1.12.9 – Wrong type of work-stand being used."
+    },
+    {
+        "id": 193,
+        "name": "F1.13.1 – Lifting plan not available and/or catered to that particular environment."
+    },
+    {
+        "id": 194,
+        "name": "F1.13.2 – Lifting permit not approved and/or available for mobile crane operations."
+    },
+    {
+        "id": 195,
+        "name": "F1.13.3 – Statutory lifting equipment found expired and/or with no proper records."
+    },
+    {
+        "id": 196,
+        "name": "F1.13.4 – Employees are trained and/or authorized to overhead crane."
+    },
+    {
+        "id": 197,
+        "name": "F1.13.5 – Lifting team (Lifting supervisor/rigger/signalman) not qualified and/or authorized."
+    },
+    {
+        "id": 198,
+        "name": "F1.13.6 – Safe working load not conspicuously marked on all lifting equipment."
+    },
+    {
+        "id": 199,
+        "name": "F1.13.7 – Lifting equipment not maintained and or defective."
+    },
+    {
+        "id": 200,
+        "name": "F1.14.1 – Confined space entry permit not approved and/or displayed."
+    },
+    {
+        "id": 201,
+        "name": "F1.14.2 – Air test not conducted and/or by qualified confined space safety assessor."
+    },
+    {
+        "id": 201,
+        "name": "F1.14.3 – Employee not trained to work in confined space."
+    },
+    {
+        "id": 201,
+        "name": "F1.14.4 – Attendant not assigned and available on site."
+    },
+    {
+        "id": 202,
+        "name": "F1.14.5 – Incompatible equipment / tool are used for confined space works."
+    },
+    {
+        "id": 203,
+        "name": "F1.14.6 – Employee not aware of confined space emergency procedure."
+    },
+    {
+        "id": 204,
+        "name": "F1.15.1 – “Safe Working Load” not marked on work stands / platforms."
+    },
+    {
+        "id": 205,
+        "name": "F1.15.2 – Work-stands steps not according to guidelines (step riser: 6.5” to 10”, tread: ≥7)"
+    },
+    {
+        "id": 206,
+        "name": "F1.15.3 – Gap between work-stand/platform and aircraft >300mm."
+    },
+    {
+        "id": 207,
+        "name": "F1.15.4 – Wing dock openings not barricaded / covered / cordoned off."
+    },
+    {
+        "id": 208,
+        "name": "F1.15.5 – Work-stands/Platform not maintained and/or defective."
+    },
+    {
+        "id": 209,
+        "name": "F1.16.1 – Empty and full cylinders are not labelled and/or stored separately."
+    },
+    {
+        "id": 210,
+        "name": "F1.16.2 – Valve protection caps not installed on cylinders."
+    },
+    {
+        "id": 211,
+        "name": "F1.16.3 – Flashback arrestors and non-return valves not installed on flammable gas cylinder."
+    },
+    {
+        "id": 212,
+        "name": "F1.16.4 – Gas cylinders not stored properly and/or secured to prevent tipping over."
+    },
+    {
+        "id": 213,
+        "name": "F1.16.5 – Heat sources found near gas cylinder storage area."
+    },
+    {
+        "id": 214,
+        "name": "F1.16.6 – In use gas cylinder found without pressure regulators."
+    },
+    {
+        "id": 215,
+        "name": "F1.16.7 – Gas cylinder hose not secured."
+    },
+    {
+        "id": 216,
+        "name": "F1.16.8 – Gas cylinder accessories (hose/regulator/clamp) in deteriorated condition."
+    },
+    {
+        "id": 217,
+        "name": "F1.17.1 – Air compressors not equipped with pressure relief valves, and pressure gauges."
+    },
+    {
+        "id": 218,
+        "name": "F1.17.2 – Appropriate PPEs not worn when using compressed air?"
+    },
+    {
+        "id": 219,
+        "name": "F1.17.3 – Air compressor accessories (hose/regulator/clamp) in deteriorated condition."
+    },
+    {
+        "id": 220,
+        "name": "F1.18.1 – Employee not using safe manual handling techniques or team lifting techniques."
+    },
+    {
+        "id": 221,
+        "name": "F1.18.2 – Mechanical handling equipment not maintained and/or defective."
+    },
+    {
+        "id": 222,
+        "name": "F1.18.3 – Large & heavy loads stored in hazardous position."
+    },
+    {
+        "id": 223,
+        "name": "F1.18.4 – Employee carrying load exceeding the maximum weight of 25 kg alone."
+    },
+    {
+        "id": 224,
+        "name": "F1.18.5 – Employees performing repetitive motion task"
+    },
+    {
+        "id": 225,
+        "name": "F1.18.6 – Employees performing task in awkward posture."
+    },
+    {
+        "id": 226,
+        "name": "F1.19.1 – Ionization radiation equipment (X-ray) without license from NEA."
+    },
+    {
+        "id": 227,
+        "name": "F1.19.1 – Mandatory warning signs available at work area."
+    },
+    {
+        "id": 228,
+        "name": "F1.19.1 – Unauthorized usage of ionization / non-ionization equipment."
+    },
+    {
+        "id": 229,
+        "name": "F1.19.2 – Ionizing radiation equipment (X-ray) and radiation sources (radioactive material) not maintained and/or defective."
+    },
+    {
+        "id": 230,
+        "name": "F1.19.3 – Ionizing radiation equipment (X-ray) users not registered as radiation workers with NEA."
+    },
+    {
+        "id": 231,
+        "name": "F1.19.4 – Radiation worker received sufficient training to enable them to work safely."
+    },
+    {
+        "id": 232,
+        "name": "F1.19.5 – Radiation survey meter not calibrated. "
+    },
+    {
+        "id": 233,
+        "name": "F1.19.6 – Shields not provided against radiation exposure."
+    },
+    {
+        "id": 234,
+        "name": "F1.19.7 – Radiation worker found without a Thermo Luminescence Dosimeters (TLD) badge."
+    },
+    {
+        "id": 235,
+        "name": "F1.19.8 – Non-ionization radiation (Class 3B & above laser and ultrasonic apparatus) equipment without license from NEA."
+    },
+    {
+        "id": 236,
+        "name": "F1.19.9 – Appropriate PPEs are worn when handling non-ionization  (Class 3B & above laser and ultrasonic apparatus) radiation equipment"
+    },
+    {
+        "id": 237,
+        "name": "F1.20.1 – Air emissions exhaust without / ineffective filter."
+    },
+    {
+        "id": 238,
+        "name": "F1.20.2 – No precautionary measures taken against accidental liquid spillage or gas leakage."
+    },
+    {
+        "id": 239,
+        "name": "F1.20.3 – Container for storage of toxic/general wastes found damaged."
+    },
+    {
+        "id": 240,
+        "name": "F1.20.4 – Spillage control kit not available or maintained."
+    },
+    {
+        "id": 241,
+        "name": "F1.20.5 – Toxic industrial waste (TIW) not collected and disposed by licensed TIW collector."
+    },
+    {
+        "id": 242,
+        "name": "F1.21.1 – Contractor performing works without a valid EHS Contractor Undertaking form submitted."
+    },
+    {
+        "id": 243,
+        "name": "F1.21.2 – Contractor not performing works in accordance to the undertaking requirements."
+    },
+    {
+        "id": 244,
+        "name": "F1.21.3 – Contractor performing high risk works without a valid Permit-to-work (PTW)."
+    },
+    {
+        "id": 245,
+        "name": "P1.1.1 – Entire Publication (TO/AMM) missing - not accounted for properly"
+    },
+    {
+        "id": 246,
+        "name": "P1.1.2 – Annual check is not complied with or overdue"
+    },
+    {
+        "id": 247,
+        "name": "P1.2.1 – Missing IOS, ISS, Revisions, Changes, Supplements or Pages"
+    },
+    {
+        "id": 248,
+        "name": "P1.2.2 – Supplements not annotated on the title page and / or not referenced on the affected page, paragraph, figure or index as required"
+    },
+    {
+        "id": 249,
+        "name": "P1.2.3 – Rescinded or Deleted Pubs (TO / AMM / LTO / STI / SI etc.) present in operational file or for use"
+    },
+    {
+        "id": 250,
+        "name": "P1.5.1 – Superseded supplements still posted"
+    },
+    {
+        "id": 251,
+        "name": "P1.5.2 – Deleted ,changed , or superseded pages not removed"
+    },
+    {
+        "id": 252,
+        "name": "Q1.4.1 – Driving exceeding speed limit."
+    },
+    {
+        "id": 253,
+        "name": "Q1.4.2 – Vehicles parked in designated parking areas."
+    },
+    {
+        "id": 254,
+        "name": "Q1.4.3 – Parked vehicle not chocked."
+    },
+    {
+        "id": 255,
+        "name": "Q1.4.4 – Vehicle with defects ( uneven tyre wear, inoperative exterior lights etc.)."
+    },
+    {
+        "id": 256,
+        "name": "R1.4.1 – Firefighting equipment not maintained and/or damaged."
+    },
+    {
+        "id": 257,
+        "name": "R1.4.2 – Firefighting equipment not available."
+    },
+    {
+        "id": 258,
+        "name": "R1.4.3 – Firefighting equipment / fire alarm system obstructed."
+    },
+    {
+        "id": 259,
+        "name": "T1.4.1 – Overdue calibration"
+    },
+    {
+        "id": 260,
+        "name": "T1.8.1 – Extra items not on the CTK Content List"
+    },
+    {
+        "id": 261,
+        "name": "T1.8.2 – intermingled tools from another CTK"
+    },
+    {
+        "id": 262,
+        "name": "T1.10.1 – CTK Equipment Content List (ECL) does not match Master Inventory List (MIL)"
+    },
+    {
+        "id": 263,
+        "name": "T1.10.2 – Pen/Ink changes to Equipment Content/ Master Inventory List (ECL/MIL not documented properly"
+    },
+    {
+        "id": 264,
+        "name": "T1.11.1 – cleanliness or corrosion, dirty, greasy tools"
+    },
+    {
+        "id": 265,
+        "name": "T1.11.2 – Etching wrong, missing, illegible, incomplete, or double etched"
+    },
+    {
+        "id": 266,
+        "name": "T1.11.3 – Minor damage that does not render the tool unserviceable"
+    },
+    {
+        "id": 267,
+        "name": "T1.12.1 – overdue inspection"
+    },
+    {
+        "id": 268,
+        "name": "T1.13.1 – stored below or above the lowest increment  setting"
+    },
+    {
+        "id": 269,
+        "name": "T1.13.2 – Tools does not match cutout/shadoW"
+    },
+    {
+        "id": 270,
+        "name": "T1.13.3 – Empty holes in CTK drawer foam not filled with RTV"
+    },
+    {
+        "id": 271,
+        "name": "V1.2.1 – Relevant Safety Materials not available"
+    },
+    {
+        "id": 272,
+        "name": "V1.2.2 – Adequate mandatory signage not provided."
+    },
+    {
+        "id": 273,
+        "name": "V1.2.3 – Mandatory signage not accordance to approved requirements."
+    },
+    {
+        "id": 274,
+        "name": "V1.2.4 – Mandatory signage not maintained."
+    },
+    {
+        "id": 275,
+        "name": "V1.5.1 – Missing Read & Sign information"
+    },
+    {
+        "id": 276,
+        "name": "V1.5.2 – Initials missing on Class 1 Information acknowledgement"
+    },
+    {
+        "id": 277,
+        "name": "W1.4.1 – Hard and/or conductive FO found in/out electronic equipment"
+    },
+    {
+        "id": 278,
+        "name": "W1.4.2 – Hard FO on flight line, hangar, vehicle or shop work areas"
+    },
+    {
+        "id": 279,
+        "name": "W1.4.3 – Hard FO left on work surface area of an aircraft"
+    },
+    {
+        "id": 280,
+        "name": "W1.4.4 – Hard FO left on support equipment (including AGE)"
+    },
+    {
+        "id": 281,
+        "name": "Z1.1.1 – PPEs not maintained."
+    },
+    {
+        "id": 282,
+        "name": "Z1.1.2 – PPEs not used when preforming task."
+    },
+    {
+        "id": 283,
+        "name": "Z1.1.3 – PPEs worn incorrectly."
+    },
+    {
+        "id": 284,
+        "name": "Z1.3.1 – First aid box/AED not maintained."
+    },
+    {
+        "id": 285,
+        "name": "Z1.3.2 – Inadequate trained first-aiders available."
+    },
+    {
+        "id": 286,
+        "name": "Z1.3.3 – Inadequate emergency shower and/or eyewash."
+    },
+    {
+        "id": 287,
+        "name": "Z1.3.4 – Emergency shower and/or eyewash not maintained."
+    },
+    {
+        "id": 288,
+        "name": "Z1.3.5 – Mandatory signs for first aid point, AED, emergency shower and eyewash not available"
+    },
+    {
+        "id": 289,
+        "name": "Z1.4.1 – Risk assessment not conducted for task."
+    },
+    {
+        "id": 290,
+        "name": "Z1.4.2 – Employees not aware of the control measures related to work performed"
+    },
+    {
+        "id": 291,
+        "name": "Z1.4.3 – Control measures not implemented according to the relevant risk assessment"
+    }
+]

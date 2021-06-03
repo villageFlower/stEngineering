@@ -1,0 +1,98 @@
+[
+    {
+        "id": 1,
+        "name": "CAB (E)"
+    },
+    {
+        "id": 2,
+        "name": "CAB (W)"
+    },
+    {
+        "id": 3,
+        "name": "PLAB"
+    },
+    {
+        "id": 4,
+        "name": "SBAB"
+    },
+    {
+        "id": 5,
+        "name": "TAB"
+    },
+    {
+        "id": 6,
+        "name": "Cazaux"
+    },
+    {
+        "id": 7,
+        "name": "PLA"
+    },
+    {
+        "id": 8,
+        "name": "JAC"
+    },
+    {
+        "id": 9,
+        "name": "BIA"
+    },
+    {
+        "id": 10,
+        "name": "H1B1"
+    },
+    {
+        "id": 11,
+        "name": "H1B2"
+    },
+    {
+        "id": 12,
+        "name": "H2B1"
+    },
+    {
+        "id": 13,
+        "name": "H2B2"
+    },
+    {
+        "id": 14,
+        "name": "H2B3"
+    },
+    {
+        "id": 15,
+        "name": "H2B4"
+    },
+    {
+        "id": 16,
+        "name": "H5B1"
+    },
+    {
+        "id": 17,
+        "name": "H5B2"
+    },
+    {
+        "id": 18,
+        "name": "H800"
+    },
+    {
+        "id": 19,
+        "name": "SYFC"
+    },
+    {
+        "id": 20,
+        "name": "WH1"
+    },
+    {
+        "id": 21,
+        "name": "WH2"
+    },
+    {
+        "id": 22,
+        "name": "H800 RAMP"
+    },
+    {
+        "id": 23,
+        "name": "PLA RAMP"
+    },
+    {
+        "id": 24,
+        "name": "OTHERS"
+    }
+]

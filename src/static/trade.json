@@ -1,0 +1,50 @@
+[
+    {
+        "id": 1,
+        "name": "AC"
+    },
+    {
+        "id": 2,
+        "name": "SM"
+    },
+    {
+        "id": 3,
+        "name": "PAINTER"
+    },
+    {
+        "id": 4,
+        "name": "PLANNER"
+    },
+    {
+        "id": 5,
+        "name": "PURCHASER"
+    },
+    {
+        "id": 6,
+        "name": "TOOL STORE PERSONNEL"
+    },
+    {
+        "id": 7,
+        "name": "GROUND HANDLER"
+    },
+    {
+        "id": 8,
+        "name": "NDT"
+    },
+    {
+        "id": 9,
+        "name": "AV"
+    },
+    {
+        "id": 10,
+        "name": "FLC"
+    },
+    {
+        "id": 11,
+        "name": "B1 (MECHANICAL)"
+    },
+    {
+        "id": 12,
+        "name": "B2 (AVIONICS)"
+    }
+]

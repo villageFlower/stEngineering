@@ -17,11 +17,6 @@ const routes: Array<RouteRecordRaw> = [
     component: Home
   },
   {
-    path: '/report',
-    name: 'Report',
-    component: Report
-  },
-  {
     path: '/saved',
     name: 'SavedChecklist',
     component: SavedChecklist

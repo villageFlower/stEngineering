@@ -8,7 +8,7 @@
 
         <ion-title
           style="
-            font-size: 3vw;
+            font-size: 25px;
             font-weight: bold;
             text-align: center;
             color: black;
@@ -21,10 +21,15 @@
     </ion-header>
 
     <ion-content :fullscreen="true">
-      <ion-card v-for="(checklist, index) in checklists" :key="index" >
+      <ion-card v-for="(checklist, index) in checklists" :key="index">
         <ion-card-header  @click="router.push('/savedDetail/'+checklist.id)">
           <ion-card-subtitle>{{ checklist.id }}</ion-card-subtitle>
-          <ion-card-title>Created at : {{ checklist.date }}</ion-card-title>
+          <ion-card-title>Created at : {{ checklist.sectionA.date }}</ion-card-title>
+          <ion-card-content style="color:black;font-size:16px;">
+            <div v-for="(key, key_index) in Object.keys(checklist['sectionA'])" :key="key_index">
+            <ion-text>{{key}} : {{ checklist.sectionA[key] }}</ion-text>
+            </div>
+          </ion-card-content>
         </ion-card-header>
       </ion-card>
     </ion-content>

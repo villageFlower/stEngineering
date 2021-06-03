@@ -1,6 +1,74 @@
-[{
-    "id":1,
-    "name":"LOCKHEED L382"
-},{
-    "name":"LEARJET 35/36"
-}]
+[
+    {
+        "id": 1,
+        "name": "LOCKHEED L382"
+    },
+    {
+        "id": 2,
+        "name": "LEARJET 35/36"
+    },
+    {
+        "id": 3,
+        "name": "LEARJET 60"
+    },
+    {
+        "id": 4,
+        "name": "LEARJET MODEL 45"
+    },
+    {
+        "id": 5,
+        "name": "GULFSTREAM G150"
+    },
+    {
+        "id": 6,
+        "name": "GULFSTREAM G550"
+    },
+    {
+        "id": 7,
+        "name": "EC120"
+    },
+    {
+        "id": 8,
+        "name": "BEECH C90GTI"
+    },
+    {
+        "id": 9,
+        "name": "DIAMOND DA40"
+    },
+    {
+        "id": 10,
+        "name": "A330 MRTT"
+    },
+    {
+        "id": 11,
+        "name": "F50"
+    },
+    {
+        "id": 12,
+        "name": "C130B"
+    },
+    {
+        "id": 13,
+        "name": "C130H"
+    },
+    {
+        "id": 14,
+        "name": "AS332"
+    },
+    {
+        "id": 15,
+        "name": "CH47"
+    },
+    {
+        "id": 16,
+        "name": "AH64"
+    },
+    {
+        "id": 17,
+        "name": "S70B"
+    },
+    {
+        "id": 18,
+        "name": "EC120"
+    }
+]

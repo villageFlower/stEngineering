@@ -5,6 +5,9 @@
         <ion-buttons slot="start">
           <ion-menu-button menu="custom"></ion-menu-button>Menu
         </ion-buttons>
+        <ion-buttons slot="end">
+          <ion-button @click="startNew">Start New</ion-button>
+        </ion-buttons>
 
         <ion-title
           style="
@@ -43,8 +46,8 @@
               <ion-select-option
                 v-for="(no, index) in aircraftRegNos"
                 :key="index"
-                :value="no.id"
-                >{{ no.aircraft_reg_no }}</ion-select-option
+                :value="no.name"
+                >{{ no.name }}</ion-select-option
               >
             </ion-select>
           </ion-col>
@@ -61,8 +64,8 @@
               <ion-select-option
                 v-for="(type, index) in engineTypes"
                 :key="index"
-                :value="type.id"
-                >{{ type.engine_type }}</ion-select-option
+                :value="type.name"
+                >{{ type.name }}</ion-select-option
               >
             </ion-select>
           </ion-col>
@@ -81,8 +84,8 @@
               <ion-select-option
                 v-for="(type, index) in aircraftTypes"
                 :key="index"
-                :value="type.id"
-                >{{ type.aircraft_type }}</ion-select-option
+                :value="type.name"
+                >{{ type.name }}</ion-select-option
               >
             </ion-select>
           </ion-col>
@@ -99,8 +102,8 @@
               <ion-select-option
                 v-for="(customer, index) in customers"
                 :key="index"
-                :value="customer.id"
-                >{{ customer.customer_program }}</ion-select-option
+                :value="customer.name"
+                >{{ customer.name }}</ion-select-option
               >
             </ion-select>
           </ion-col>
@@ -119,8 +122,8 @@
               <ion-select-option
                 v-for="(staff, index) in inspectedBys"
                 :key="index"
-                :value="staff.id"
-                >{{ staff.inspected_by }}</ion-select-option
+                :value="staff.name"
+                >{{ staff.name }}</ion-select-option
               >
             </ion-select>
           </ion-col>
@@ -137,8 +140,8 @@
               <ion-select-option
                 v-for="(location, index) in locations"
                 :key="index"
-                :value="location.id"
-                >{{ location.location }}</ion-select-option
+                :value="location.name"
+                >{{ location.name }}</ion-select-option
               >
             </ion-select>
           </ion-col>
@@ -158,8 +161,8 @@
               <ion-select-option
                 v-for="(checklist, index) in checklists"
                 :key="index"
-                :value="checklist.id"
-                >{{ checklist.checklist }}</ion-select-option
+                :value="checklist.name"
+                >{{ checklist.name }}</ion-select-option
               >
             </ion-select>
           </ion-col>
@@ -168,7 +171,7 @@
           </ion-col>
           <ion-col>
             <ion-text style="padding-left: 16px; font-size: 1.2vw">{{
-              currentDate
+              finalDataSectionA.date
             }}</ion-text>
           </ion-col>
         </ion-row>
@@ -204,32 +207,42 @@
             <ion-text>Qty Rejected</ion-text>
           </ion-col>
         </ion-row>
-        <ion-row v-for="(item, item_index) in checkItems" :key="item_index">
+        <ion-row
+          v-for="(item, item_index) in checklists[currentChecklist].check_items"
+          :key="item_index"
+        >
           <ion-col size="1" style="text-align: center">
-            <ion-text>{{ item_index + 1 }}</ion-text> 
-
+            <ion-text>{{ item_index + 1 }}</ion-text>
           </ion-col>
           <ion-col size="4">
-            <ion-text>{{ item.check_item }}</ion-text>
-            <ion-button  style="
-                                height: 50%;
-                                width: 20%;
-                                float: right;
-                                padding: 0px;
-                                font-size: 1vw;
-                              "
-                              expand="full"
-                              color="success" @click="ngIfCtrl(item_index)" >Hide Reject </ion-button>
+            <ion-text>{{ item.name }}</ion-text>
+            <ion-button
+              style="
+                height: 50%;
+                width: 20%;
+                float: right;
+                padding: 0px;
+                font-size: 5px;
+              "
+              expand="full"
+              color="success"
+              @click="clickHideAll(item_index)"
+              >Hide Reject
+            </ion-button>
 
-                              <ion-button  style="
-                                height: 50%;
-                                width: 20%;
-                                float: right;
-                                padding: 0px;
-                                font-size: 1vw;
-                              "
-                              expand="full"
-                              color="success" @click="ngIfCtrlshow(item_index)" >Show Reject </ion-button>
+            <ion-button
+              style="
+                height: 50%;
+                width: 20%;
+                float: right;
+                padding: 0px;
+                font-size: 5px;
+              "
+              expand="full"
+              color="success"
+              @click="clickShowAll(item_index)"
+              >Show Reject
+            </ion-button>
           </ion-col>
 
           <ion-col size="7" style="--ion-grid-column-padding: 0px">
@@ -245,15 +258,8 @@
                 v-for="(element, element_index) in item.check_elements"
                 :key="element_index"
               >
-
-
                 <ion-item-divider v-if="element_index != 0"></ion-item-divider>
                 <ion-col size="3" class="col-in-col-1">
-
-
-
-
-                              
                   <ion-text>{{ element.name }}</ion-text>
                 </ion-col>
                 <ion-col
@@ -264,7 +270,7 @@
                   <ion-text class="col-in-col-2-item">Checked</ion-text>
                   <ion-checkbox
                     color="dark"
-                    :checked="element.checked == 1"
+                    :checked="element.check == 1"
                   ></ion-checkbox>
                 </ion-col>
                 <ion-col
@@ -275,7 +281,7 @@
                   <ion-text class="col-in-col-2-item">Reject</ion-text>
                   <ion-checkbox
                     color="dark"
-                    :checked="element.rejected == 1"
+                    :checked="element.reject == 1"
                   ></ion-checkbox>
                 </ion-col>
                 <ion-col
@@ -283,198 +289,197 @@
                   style="text-align: center"
                   class="col-in-col-4"
                 >
-                  <ion-text>{{ element.checked }}</ion-text>
+                  <ion-text>{{ element.check }}</ion-text>
                 </ion-col>
                 <ion-col
                   size="1"
                   style="text-align: center"
                   class="col-in-col-4"
                 >
-                  <ion-text>{{ element.rejected }}</ion-text>
+                  <ion-text>{{ element.reject }}</ion-text>
                 </ion-col>
               </ion-row>
             </ion-grid>
           </ion-col>
 
-          <div v-if="item.hasReject == true" style="width: 100%">
-            <div 
-            v-for="(reject, reject_index) in item.rejected"
-              :key="reject_index">
-            <ion-row
-              v-if="!item.finalRejected[reject_index].hide"
+          <div style="width: 100%" v-if="item.showRejection">
+            <div
+              v-for="(reject, reject_index) in item.check_elements"
+              :key="reject_index"
             >
-              <ion-col size="10" class="reject-box">
-                <ion-grid
-                  style="
-                    --ion-grid-columns: 10;
-                    --ion-grid-column-padding: 1px;
-                  "
-                  class="ion-background2"
-                  
-                >
+              <ion-row v-if="reject.reject == 1">
+                <ion-col size="10" class="reject-box">
+                  <ion-grid
+                    style="
+                      --ion-grid-columns: 10;
+                      --ion-grid-column-padding: 1px;
+                    "
+                    class="ion-background2"
+                  >
+                    <ion-row class="reject-title">
+                      <ion-col size="4" style="text-align: center">
+                        <ion-text style="color: white">Rejected</ion-text>
+                      </ion-col>
+                      <ion-col size="2">
+                        <ion-text style="color: white">Sub-category</ion-text>
+                      </ion-col>
+                      <ion-col size="4">
+                        <ion-text style="color: white"
+                          >Most Probable Cause</ion-text
+                        >
+                      </ion-col>
+                    </ion-row>
 
-              
-                  <ion-row class="reject-title" >
-                    <ion-col size="4" style="text-align: center">
-                      <ion-text style="color: white">Rejected</ion-text>
-                    </ion-col>
-                    <ion-col size="2">
-                      <ion-text style="color: white">Sub-category</ion-text>
-                    </ion-col>
-                    <ion-col size="4">
-                      <ion-text style="color: white"
-                        >Most Probable Cause</ion-text
-                      >
-                    </ion-col>
-                  </ion-row>
-
-                  <ion-row>
-                    <ion-col size="4">
-                      <ion-text>{{ reject.name }}</ion-text>
-                    </ion-col>
-                    <ion-col size="2">
-                      <ion-select
-                        interface="action-sheet"
-                        :value="item.finalRejected[reject_index].subCategory"
-                        v-model="item.finalRejected[reject_index].subCategory"
-                      >
-                        <ion-select-option value=""
-                          >Please Select
-                        </ion-select-option>
-                        <ion-select-option
-                          v-for="(subCate, index) in reject.sub_category"
-                          :key="index"
-                          :value="subCate.id"
+                    <ion-row>
+                      <ion-col size="4">
+                        <ion-text>{{ reject.name }}</ion-text>
+                      </ion-col>
+                      <ion-col size="2">
+                        <ion-select
+                          interface="action-sheet"
+                          :value="reject.rejection.sub_category"
+                          v-model="reject.rejection.sub_category"
                         >
-                          {{ subCate.name }}
-                        </ion-select-option>
-                      </ion-select>
-                    </ion-col>
-                    <ion-col size="4">
-                      <ion-select
-                        interface="action-sheet"
-                        :value="
-                          item.finalRejected[reject_index].mostProbableCause
-                        "
-                        v-model="
-                          item.finalRejected[reject_index].mostProbableCause
-                        "
-                      >
-                        <ion-select-option value=""
-                          >Please Select</ion-select-option
-                        >
-                        <ion-select-option
-                          v-for="(cause, index) in reject.most_probable_cause"
-                          :key="index"
-                          :value="cause.id"
-                        >
-                          {{ cause.name }}
-                        </ion-select-option>
-                      </ion-select>
-                    </ion-col>
-                  </ion-row>
-                  <ion-row>
-                    <ion-col size="4" style="--ion-grid-column-padding: 0px">
-                      <ion-grid
-                        style="
-                          --ion-grid-padding: 1px;
-                          --ion-grid-columns: 9;
-                          width: 100%;
-                        "
-                      >
-                        <ion-row style="border: 0px">
-                          <ion-col
-                            size="5"
-                            style="border-width: 0px 1px 1px 0px"
+                          <ion-select-option value=""
+                            >Please Select
+                          </ion-select-option>
+                          <ion-select-option
+                            v-for="(subCate, index) in reject.sub_category"
+                            :key="index"
+                            :value="subCate"
                           >
-                            <ion-text style="padding-left: 1px"
-                              >Staff Responsible</ion-text
+                            {{ subCate }}
+                          </ion-select-option>
+                        </ion-select>
+                      </ion-col>
+                      <ion-col size="4">
+                        <ion-select
+                          interface="action-sheet"
+                          :value="reject.rejection.most_probable_cause"
+                          v-model="reject.rejection.most_probable_cause"
+                        >
+                          <ion-select-option value=""
+                            >Please Select</ion-select-option
+                          >
+                          <ion-select-option
+                            v-for="(cause, index) in reject.most_probable_cause"
+                            :key="index"
+                            :value="cause"
+                          >
+                            {{ cause }}
+                          </ion-select-option>
+                        </ion-select>
+                      </ion-col>
+                    </ion-row>
+                    <ion-row>
+                      <ion-col size="4" style="--ion-grid-column-padding: 0px">
+                        <ion-grid
+                          style="
+                            --ion-grid-padding: 1px;
+                            --ion-grid-columns: 9;
+                            width: 100%;
+                          "
+                        >
+                          <ion-row style="border: 0px">
+                            <ion-col
+                              size="5"
+                              style="border-width: 0px 1px 1px 0px"
                             >
-                          </ion-col>
-                          <ion-col
-                            size="4"
-                            style="border-width: 0px 0px 1px 1px"
-                          >
-                            <ion-input style="padding-left: 1px"
-                            :value="item.finalRejected[reject_index].staffResponsibility"
-                              v-model="item.finalRejected[reject_index].staffResponsibility"
+                              <ion-text style="padding-left: 1px"
+                                >Staff Responsible</ion-text
+                              >
+                            </ion-col>
+                            <ion-col
+                              size="4"
+                              style="border-width: 0px 0px 1px 1px"
+                            >
+                              <ion-input
+                                style="padding-left: 1px"
+                                :value="reject.rejection.staff_responsible"
+                                v-model="reject.rejection.staff_responsible"
+                              ></ion-input>
+                            </ion-col>
+                          </ion-row>
+                          <ion-row style="border: 0px; height: 6vh">
+                            <ion-col
+                              size="5"
+                              style="border-width: 1px 1px 0px 0px"
+                            >
+                              <ion-text style="padding-left: 1px"
+                                >Trade</ion-text
+                              >
+                            </ion-col>
+                            <ion-col
+                              size="4"
+                              style="border-width: 1px 0px 0px 1px"
+                            >
+                              <ion-select
+                                interface="action-sheet"
+                                :value="reject.rejection.trade"
+                                v-model="reject.rejection.trade"
+                                style="padding-left: 1px"
+                              >
+                                <ion-select-option value=""
+                                  >Please Select</ion-select-option
+                                >
+                                <ion-select-option
+                                  v-for="(trad, index) in reject.trade"
+                                  :key="index"
+                                  :value="trad"
+                                >
+                                  {{ trad }}
+                                </ion-select-option>
+                              </ion-select>
+                            </ion-col>
+                          </ion-row>
+                        </ion-grid>
+                      </ion-col>
+                      <ion-col size="6" style="--ion-grid-column-padding: 0px">
+                        <ion-grid
+                          style="
+                            --ion-grid-columns: 12;
+                            --ion-grid-padding: 0px;
+                          "
+                        >
+                          <ion-row>
+                            <ion-text>Remarks:</ion-text>
+                          </ion-row>
+                          <ion-row>
+                            <ion-col style="border: 0px" size="10"
+                              ><ion-input
+                                :value="reject.rejection.remark"
+                                v-model="reject.rejection.remark"
                               ></ion-input
-                            >
-                          </ion-col>
-                        </ion-row>
-                        <ion-row style="border: 0px; height: 6vh">
-                          <ion-col
-                            size="5"
-                            style="border-width: 1px 1px 0px 0px"
-                          >
-                            <ion-text style="padding-left: 1px">Trade</ion-text>
-                          </ion-col>
-                          <ion-col
-                            size="4"
-                            style="border-width: 1px 0px 0px 1px"
-                          >
-                            <ion-select
-                              interface="action-sheet"
-                              :value="item.finalRejected[reject_index].trade"
-                              v-model="item.finalRejected[reject_index].trade"
-                              style="padding-left: 1px"
-                            >
-                              <ion-select-option value=""
-                                >Please Select</ion-select-option
+                            ></ion-col>
+                            <ion-col style="border: 0px" size="2">
+                              <ion-button
+                                style="
+                                  height: 30px;
+                                  width: 90%;
+                                  float: right;
+                                  padding: 0px;
+                                  font-size: 1vw;
+                                "
+                                expand="full"
+                                color="success"
+                                @click="takePhoto(item_index, reject_index)"
                               >
-                              <ion-select-option
-                                v-for="(trad, index) in reject.trade"
-                                :key="index"
-                                :value="trad.id"
-                              >
-                                {{ trad.name }}
-                              </ion-select-option>
-                            </ion-select>
-                          </ion-col>
-                        </ion-row>
-                      </ion-grid>
-                    </ion-col>
-                    <ion-col size="6" style="--ion-grid-column-padding: 0px">
-                      <ion-grid
-                        style="--ion-grid-columns: 12; --ion-grid-padding: 0px"
-                      >
-                        <ion-row>
-                          <ion-text>Remarks:</ion-text>
-                        </ion-row>
-                        <ion-row>
-                          <ion-col style="border: 0px" size="10"
-                            ><ion-input :value="item.finalRejected[reject_index].remarks"
-                             v-model="item.finalRejected[reject_index].remarks"></ion-input
-                          ></ion-col>
-                          <ion-col style="border: 0px" size="2">
-                            <ion-button
-                              style="
-                                height: 60%;
-                                width: 90%;
-                                float: right;
-                                padding: 0px;
-                                font-size: 1vw;
-                              "
-                              expand="full"
-                              color="success"
-                              @click="takePhoto(item_index, reject_index)"
-                            >
-                              take photo
-                            </ion-button>
-                          </ion-col>
-                        </ion-row>
-                      </ion-grid>
-                    </ion-col>
-                  </ion-row>
-                </ion-grid>
-              </ion-col>
-              <ion-col class="reject-box" style="padding-top: 3vh">
-                <ion-img
-                  v-if="item.finalRejected[reject_index].photo"
-                  :src="item.finalRejected[reject_index].photo"
-                ></ion-img>
-              </ion-col>
-            </ion-row>
+                                take photo
+                              </ion-button>
+                            </ion-col>
+                          </ion-row>
+                        </ion-grid>
+                      </ion-col>
+                    </ion-row>
+                  </ion-grid>
+                </ion-col>
+                <ion-col class="reject-box" style="padding-top: 10px">
+                  <ion-img
+                    v-if="reject.rejection.photo"
+                    :src="reject.rejection.photo"
+                  ></ion-img>
+                </ion-col>
+              </ion-row>
             </div>
           </div>
         </ion-row>
@@ -519,6 +524,7 @@ import {
   IonItem,
   IonImg,
   IonIcon,
+  IonInput,
 } from "@ionic/vue";
 import { defineComponent, ref } from "vue";
 import { services } from "../scripts/service";
@@ -527,7 +533,11 @@ import { useRoute } from "vue-router";
 import { useRouter } from "vue-router";
 import { camera, trash, close, images, square, triangle } from "ionicons/icons";
 import { usePhotoGallery, Photo } from "@/composables/usePhotoGallery";
-import { Plugins, CameraResultType, CameraSource } from "@capacitor/core";
+import {
+  Plugins,
+  CameraResultType,
+  CameraSource,
+} from "@capacitor/core";
 import { isPlatform } from "@ionic/vue";
 import { storageRef } from "@/main";
 
@@ -549,7 +559,7 @@ export default defineComponent({
     IonSelectOption,
     IonCheckbox,
     IonMenuButton,
-
+    IonInput,
     IonButtons,
     IonItemDivider,
     IonButton,
@@ -560,7 +570,7 @@ export default defineComponent({
     };
     const router = useRouter();
     const { Camera } = Plugins;
-const { photos } = usePhotoGallery();
+    const { photos } = usePhotoGallery();
 
     return {
       options,
@@ -574,6 +584,7 @@ const { photos } = usePhotoGallery();
   },
   data() {
     return {
+      savedId: null as any,
       initing: false,
       showSectionB: false,
       hasRejected: false,
@@ -586,7 +597,7 @@ const { photos } = usePhotoGallery();
       locations: new Array(0),
       currentDate: null as any,
       loading: null as any,
-      checkItems: null as any,
+      currentChecklist: null as any,
       finalDataSectionA: {
         aircraftRegNo: "",
         engineType: "",
@@ -612,8 +623,8 @@ const { photos } = usePhotoGallery();
   methods: {
     reset() {
       this.showSectionB = false;
-      this.checkItems=[];
-      this.finalDataSectionA={
+      this.checkItems = [];
+      this.finalDataSectionA = {
         aircraftRegNo: "",
         engineType: "",
         aircraftType: "",
@@ -630,148 +641,111 @@ const { photos } = usePhotoGallery();
         allowEditing: true,
         resultType: CameraResultType.Uri,
       });
-      const key = this.generateKey(15) + this.currentDate;
-      const url = await services.uploadImage(image.webPath, key);
-      this.checkItems[itemIndex].finalRejected[rejectIndex].photo = url;
-      console.log(this.checkItems[itemIndex]);
+      const response = await fetch(image.webPath!);
+      const blob = await response.blob();
+      this.checklists[this.currentChecklist].check_items[
+        itemIndex
+      ].check_elements[
+        rejectIndex
+      ].rejection.photo = (await this.convertBlobToBase64(blob)) as string;
+    },
+    convertBlobToBase64(blob: Blob) {
+      return new Promise((resolve, reject) => {
+        const reader = new FileReader();
+        reader.readAsDataURL(blob);
+        reader.onloadend = function () {
+          const base64data = reader.result;
+          resolve(base64data);
+        };
+      });
     },
     clickSave() {
-      const key = this.generateKey(15);
-
-      const data = {
+      const saveData = {
         sectionA: this.finalDataSectionA,
-        sectionB: this.checkItems,
-        date: this.currentDate,
+        selectedChecklist: this.currentChecklist,
+        checklistData: this.checklists[this.currentChecklist],
+        showSectionB: this.showSectionB,
       };
-      localStorage.setItem(key, JSON.stringify(data));
-      services.openToast("checklist Saved");
+      if (this.savedId) {
+        localStorage.setItem(this.savedId, JSON.stringify(saveData));
+      } else {
+        const key = this.generateKey(15);
+        localStorage.setItem(key, JSON.stringify(saveData));
+        this.savedId = key;
+      }
+      services.openToast("checklist saved");
+      console.log(saveData);
+
+      return;
     },
     async clickSubmit() {
-      let data: any = {};
-      data = deepCopy(this.finalDataSectionA);
-
-      const sectionB = this.checkItems;
-      sectionB.forEach(
-        (item: {
-          checks: any;
-          rejects: any;
-          [x: string]: {
-            most_probable_cause: any;
-            sub_category: any;
-            trade: any;
-            photo: any;
-            checked: any;
-            rejected: any;
-          }[];
-        }) => {
-          item.checks = 0;
-          item.rejects = 0;
-          item["check_elements"].forEach(
-            (element: {
-              most_probable_cause: any;
-              sub_category: any;
-              trade: any;
-              checked: any;
-              rejected: any;
-            }) => {
-              if (element.checked == 1) {
-                item.checks += 1;
-              }
-              if (element.rejected == 1) {
-                item.rejects += 1;
-              }
-              delete element.most_probable_cause;
-              delete element.sub_category;
-              delete element.trade;
-            }
-          );
-        }
-      );
-      data["sectionB"] = sectionB;
-      data["date"] = new Date(this.currentDate);
-      const res = await services.submitChecklist(data);
-      if (res) {
-        services.presentAlertConfirm(
-          "Submitted",
-          "Checklist Submitted, your submition reference id is:" + res,
-          this.alertButtons
-        );
-        const submitted = localStorage.getItem("submitted");
-        let tempData = [];
-        submitted ? (tempData = JSON.parse(submitted)) : (tempData = []);
-        tempData.push({
-          ref: "submission Ref: " + res,
-          date: this.currentDate,
-        });
-        localStorage.setItem("submitted", JSON.stringify(tempData));
-        return;
-      }
-      services.openToast("Network Error, Please save and try again later");
+      const key = this.savedId ? this.savedId : this.generateKey(15);
+      this.finalDataSectionA.date = this.currentDate;
+      const saveData = {
+        sectionA: this.finalDataSectionA,
+        checklistData: this.checklists[this.currentChecklist],
+      };
+      console.log(saveData);
+      const res = await services.writeFile(saveData)
+      this.startNew();
+    },
+    async presentLoading(msg: string) {
+      this.loading = await loadingController.create({
+        cssClass: "my-custom-class",
+        message: msg,
+      });
+      await this.loading.present();
+    },
+    async hideLoading() {
+      await this.loading.dismiss();
+    },
+    startNew() {
+      this.finalDataSectionA = {
+        aircraftRegNo: "",
+        engineType: "",
+        aircraftType: "",
+        customerProgram: "",
+        location: "",
+        checklist: "",
+        date: "",
+      };
+      this.showSectionB = false;
+      this.init();
     },
     clickChecked(itemIndex: number, elementIndex: number) {
       if (
-        this.checkItems[itemIndex].check_elements[elementIndex].checked == 1
+        this.checklists[this.currentChecklist].check_items[itemIndex]
+          .check_elements[elementIndex].reject == 1
       ) {
-        this.checkItems[itemIndex].check_elements[elementIndex].checked = 0;
-        this.checkItems[itemIndex].check_elements[elementIndex].rejected = 0;
-        const rejectIndex = this.findElementIndex(
-          this.checkItems[itemIndex]["rejected"],
-          this.checkItems[itemIndex].check_elements[elementIndex].name
-        );
-        if (rejectIndex != -1) {
-          //for showing data
-        this.checkItems[itemIndex]["rejected"].splice(rejectIndex, 1);
-        //for final data binding
-        this.checkItems[itemIndex]["finalRejected"].splice(rejectIndex, 1);
-        }
-        
+        this.checklists[this.currentChecklist].check_items[
+          itemIndex
+        ].check_elements[elementIndex].check = 0;
+        this.checklists[this.currentChecklist].check_items[
+          itemIndex
+        ].check_elements[elementIndex].reject = 0;
+
         return;
       }
-      this.checkItems[itemIndex].check_elements[elementIndex].checked = 1;
+      this.checklists[this.currentChecklist].check_items[
+        itemIndex
+      ].check_elements[elementIndex].check = 1;
     },
     clickRejected(itemIndex: number, elementIndex: number) {
       if (
-        this.checkItems[itemIndex].check_elements[elementIndex].rejected == 0
+        this.checklists[this.currentChecklist].check_items[itemIndex]
+          .check_elements[elementIndex].reject == 0
       ) {
-        this.checkItems[itemIndex].check_elements[elementIndex].rejected = 1;
-        this.checkItems[itemIndex].check_elements[elementIndex].checked = 1;
-        this.checkItems[itemIndex].hasReject = true;
-        //for showing data
-        this.checkItems[itemIndex].rejected.push(
-          this.checkItems[itemIndex].check_elements[elementIndex]
-        );
-        //for final data binding
-        this.checkItems[itemIndex].finalRejected.push({
-          name: this.checkItems[itemIndex].check_elements[elementIndex].name,
-          staffResponsibility: "",
-          trade: "",
-          subCategory: "",
-          mostProbableCause: "",
-          remarks:"",
-        });
+        this.checklists[this.currentChecklist].check_items[
+          itemIndex
+        ].check_elements[elementIndex].reject = 1;
+        this.checklists[this.currentChecklist].check_items[
+          itemIndex
+        ].check_elements[elementIndex].check = 1;
         return;
       }
-      this.checkItems[itemIndex].check_elements[elementIndex].rejected = 0;
-        const rejectIndex = this.findElementIndex(
-          this.checkItems[itemIndex]["rejected"],
-          this.checkItems[itemIndex].check_elements[elementIndex].name
-        );
-        if (rejectIndex != -1) {
-          //for showing data
-        this.checkItems[itemIndex]["rejected"].splice(rejectIndex, 1);
-        //for final data binding
-        this.checkItems[itemIndex]["finalRejected"].splice(rejectIndex, 1);
-        }
-      for (
-        let i = 0;
-        i < this.checkItems[itemIndex]["check_elements"].length;
-        i++
-      ) {
-        if (this.checkItems[itemIndex]["check_elements"][i].rejected == 1) {
-          return;
-        }
-      }
-      this.checkItems[itemIndex].hasReject = false;
+      this.checklists[this.currentChecklist].check_items[
+        itemIndex
+      ].check_elements[elementIndex].reject = 0;
     },
     //selecting checklist change
     async selectChange() {
@@ -780,14 +754,17 @@ const { photos } = usePhotoGallery();
         this.showSectionB == false;
         return;
       }
-      this.presentLoading("Loading Checklist ...");
-      console.log(this.getItemArrayById(checklistId));
-      this.checkItems = await services.getCheckItems(
-        this.getItemArrayById(checklistId)
+      this.currentChecklist = this.returnChecklistIndex(
+        this.finalDataSectionA.checklist
       );
-      console.log(this.checkItems);
       this.showSectionB = true;
-      this.hideLoading();
+    },
+    returnChecklistIndex(name) {
+      for (let i = 0; i < this.checklists.length; i++) {
+        if (this.checklists[i].name == name) {
+          return i;
+        }
+      }
     },
     getItemArrayById(id: any) {
       for (let i = 0; i < this.checklists.length; i++) {
@@ -825,49 +802,34 @@ const { photos } = usePhotoGallery();
 
       return [year, month, day].join("-");
     },
-    async presentLoading(msg: string) {
-      this.loading = await loadingController.create({
-        cssClass: "my-custom-class",
-        message: msg,
-      });
-      await this.loading.present();
-    },
-
-    async hideLoading() {
-      await this.loading.dismiss();
-    },
     async init() {
       this.initing = true;
-      this.presentLoading("Loading...");
-      this.aircraftRegNos = await services.getAircraftRegNo();
-      this.aircraftTypes = await services.getAircraftType();
-      this.inspectedBys = await services.getInspectedBy();
-      this.checklists = await services.getChecklist();
-      this.engineTypes = await services.getEngineType();
-      this.customers = await services.getCustomer();
-      this.locations = await services.getLocation();
-      this.currentDate = this.formatDate();
-      this.hideLoading();
+      this.aircraftRegNos = require("../static/aircraft_reg.json");
+      this.aircraftTypes = require("../static/aircraft_type.json");
+      this.inspectedBys = require("../static/inspected_by.json");
+      const checklists = await require("../static/checklist.json");
+      this.checklists = deepCopy(checklists);
+      this.engineTypes = require("../static/engine_type.json");
+      this.customers = require("../static/customer_program.json");
+      this.locations = require("../static/location.json");
+      this.finalDataSectionA.date = this.formatDate();
+      this.currentDate = new Date(this.finalDataSectionA.date);
     },
-    ngIfCtrl(itemIndex){
-  this.checkItems[itemIndex].finalRejected.forEach(reject => {
-    reject.hide = true
-  });
-},
+    clickHideAll(itemIndex) {
+      this.checklists[this.currentChecklist].check_items[
+        itemIndex
+      ].showRejection = false;
+    },
 
-ngIfCtrlshow(itemIndex){
-  this.checkItems[itemIndex].finalRejected.forEach(reject => {
-    reject.hide = false
-  });
-},
+    clickShowAll(itemIndex) {
+      this.checklists[this.currentChecklist].check_items[
+        itemIndex
+      ].showRejection = true;
+    },
   },
   ionViewDidEnter() {
-    this.initialDataConfiguration = this.$data;
     this.init();
   },
-
-  
-
 });
 </script>
 
@@ -998,20 +960,18 @@ ion-datetime {
 .button-col {
   border-width: 0px 0px 0px 0px;
 }
-.ion-background{
-background-color: #59a1ff52;;
+.ion-background {
+  background-color: #59a1ff52;
   border-radius: 10px;
   height: 210px;
   margin: 8px;
   width: 92vw !important;
-  padding: 0;}
+  padding: 0;
+}
 
-
-.ion-background2{
-  background-color: #ff3a3d50;;
+.ion-background2 {
+  background-color: #ff3a3d50;
   border-radius: 10px;
-  height: 160px;
   margin: 8px;
-  padding-top: 30px;
 }
 </style>

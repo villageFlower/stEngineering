@@ -1,6 +1,9 @@
 import { db, storageRef } from "../main";
 import { alertController, modalController, toastController } from '@ionic/vue';
 import Modal from '../components/modal.vue'
+import { Plugins, Filesystem, FilesystemDirectory, FilesystemEncoding, Capacitor } from '@capacitor/core';
+
+
 
 
 const getDocValues = async function (collectionName: string, docName: string) {
@@ -24,33 +27,46 @@ const getDocValues = async function (collectionName: string, docName: string) {
         });
 }
 
-const getFileBlob = function (url: any) {
-    return new Promise<Blob>(function (resolve, reject) {
-        const xhr = new XMLHttpRequest();
-        xhr.open("GET", url);
-        xhr.responseType = "blob";
-        xhr.onload = function () {
-            if (this.status >= 200 && this.status < 300) {
-                resolve(xhr.response);
-            } else {
-                reject({
-                    status: this.status,
-                    statusText: xhr.statusText
-                });
+
+const getSQLText = function (finalData: any) {
+    const sectionA = finalData.sectionA
+    const checklistData = finalData.checklistData
+    const dateStr = finalData.sectionA["date"]
+        .toISOString()
+        .slice(0, 19)
+        .replace("T", " ");
+    const submitted = `USE STEDAS;INSERT INTO submitted (aircraftRegNo, aircraftType, checklist,customerProgram, date, engineType, inspectedBy,location)VALUES ('${sectionA.aircraftRegNo}','${sectionA.aircraftType}','${sectionA.checklist}','${sectionA.customerProgram}','${dateStr}','${sectionA.engineType}','${sectionA.inspectedBy}','${sectionA.location}');SET @sub_id=LAST_INSERT_ID();`
+    let sectionB = ``
+    for (let i = 0; i < checklistData['check_items'].length; i++) {
+        let checks = 0
+        let rejects = 0
+        for (let a = 0; a < checklistData['check_items'][i]['check_elements'].length; a++) {
+            if (checklistData['check_items'][i]['check_elements'][a].check == 1) {
+                checks += 1
             }
-        };
-        xhr.onerror = function () {
-            reject({
-                status: this.status,
-                statusText: xhr.statusText
-            });
-        };
-        xhr.send();
-    });
+            if (checklistData['check_items'][i]['check_elements'][a].reject == 1) {
+                rejects += 1
+            }
+        }
+        sectionB += `INSERT INTO check_item (no_of_checks, no_of_rejects, name,submitted_id)VALUES (${checks},${rejects},'${checklistData['check_items'][i].name}',@sub_id);SET @item_id=LAST_INSERT_ID();`
+        for (let a = 0; a < checklistData['check_items'][i]['check_elements'].length; a++) {
+            const element = checklistData['check_items'][i]['check_elements'][a]
+
+            if (element.reject == 1) {
+                sectionB += `INSERT INTO rejections (check_element_name, sub_category, most_probable_cause,trade,staff_respnsible,remarks,pic)VALUES ('${element.name}','${element.rejection.sub_category}','${element.rejection.most_probable_cause}','${element.rejection.staff_responsible}','${element.rejection.trade}','${element.rejection.remark}','${element.rejection.photo}');SET @reject_id=LAST_INSERT_ID();INSERT INTO check_element (name, rejected, checked, rejection_id, check_item_id)VALUES ('${element.name}',${element.reject},${element.check},@reject_id,@item_id);`
+            } else {
+                sectionB += `INSERT INTO check_element (name, rejected, checked, rejection_id, check_item_id)VALUES ('${element.name}',${element.reject},${element.check},null,@item_id);`
+            }
+
+        }
+    }
+    return (submitted + sectionB);
 }
 
 
-const showReminder = async function(msg: string) {
+
+
+const showReminder = async function (msg: string) {
     const toast = await toastController
         .create({
             message: msg,
@@ -61,79 +77,6 @@ const showReminder = async function(msg: string) {
 }
 
 const services = {
-    async getAircraftRegNo() {
-        const temp = await db.collection("aircraft_reg_no").get();
-        return temp.docs.map(doc => {
-            const data = doc.data()
-            data.id = doc.id
-            return data
-        });
-    },
-    async getAircraftType() {
-        const temp = await db.collection("aircraft_type").get();
-        return temp.docs.map(doc => {
-            const data = doc.data()
-            data.id = doc.id
-            return data
-        });
-    },
-    async getInspectedBy() {
-        const temp = await db.collection("inspected_by").get();
-        return temp.docs.map(doc => {
-            const data = doc.data()
-            data.id = doc.id
-            return data
-        });
-    },
-    async getChecklist() {
-        const temp = await db.collection("checklist").get();
-        return temp.docs.map(doc => {
-            const data = doc.data()
-            data.id = doc.id
-            return data
-        });
-    },
-    async getEngineType() {
-        const temp = await db.collection("engine_type").get();
-        return temp.docs.map(doc => {
-            const data = doc.data()
-            data.id = doc.id
-            return data
-        });
-    },
-    async getCustomer() {
-        const temp = await db.collection("customer_program").get();
-        return temp.docs.map(doc => {
-            const data = doc.data()
-            data.id = doc.id
-            return data
-        });
-    },
-    async getLocation() {
-        const temp = await db.collection("location").get();
-        return temp.docs.map(doc => {
-            const data = doc.data()
-            data.id = doc.id
-            return data
-        });
-    },
-    async getCheckItems(idArr: any) {
-        const tempArr: any[] = []
-        const alphArr = [" a", " b", " c", " d", " e", " f", " g", " h", " i", " j", " k", " l", " m", " n", " o", " p", " q", " r", " s", " t", " u", " v", " w", " x", " y", " z"]
-        for (let i = 0; i < idArr.length; i++) {
-            const temp = await getDocValues("check_item", idArr[i].id)
-            for (let a = 0; a < temp.check_elements.length; a++) {
-                temp.check_elements[a].checked = 0
-                temp.check_elements[a].rejected = 0
-                temp.check_elements[a].name = alphArr[a] + ") " + temp.check_elements[a].name
-            }
-            temp.hasReject = false,
-                temp.rejected = new Array(0)
-            temp.finalRejected = new Array(0)
-            tempArr.push(temp)
-        }
-        return tempArr
-    },
     async openToast(msg: string) {
         const toast = await toastController
             .create({
@@ -142,39 +85,6 @@ const services = {
                 position: "middle"
             })
         return toast.present();
-    },
-    async uploadImage(image: any, key: any) {
-        const metadata = {
-            contentType: 'image/jpeg',
-        };
-        const blobFile = await getFileBlob(image)
-        const res = await storageRef.child("reject/" + key + ".jpg").put(blobFile, metadata)
-        const url = await res.ref.getDownloadURL()
-        return url
-    },
-    getFileBlob (url: any) {
-        return new Promise<Blob>(function (resolve, reject) {
-            const xhr = new XMLHttpRequest();
-            xhr.open("GET", url);
-            xhr.responseType = "blob";
-            xhr.onload = function () {
-                if (this.status >= 200 && this.status < 300) {
-                    resolve(xhr.response);
-                } else {
-                    reject({
-                        status: this.status,
-                        statusText: xhr.statusText
-                    });
-                }
-            };
-            xhr.onerror = function () {
-                reject({
-                    status: this.status,
-                    statusText: xhr.statusText
-                });
-            };
-            xhr.send();
-        });
     },
     async submitChecklist(data: any) {
         const res = await db.collection("submitted").add(data)
@@ -192,34 +102,83 @@ const services = {
             })
         return modal.present();
     },
-    async presentAlertConfirm(header: any,msg: any,buttons: any) {
+    async presentAlertConfirm(header: any, msg: any, buttons: any) {
         const alert = await alertController
-          .create({
-            cssClass: 'my-custom-class',
-            header: header,
-            message: msg,
-            buttons: buttons,
-          });
+            .create({
+                cssClass: 'my-custom-class',
+                header: header,
+                message: msg,
+                buttons: buttons,
+            });
         return alert.present();
-      },
-      async getReportData(checklist,data){
+    },
+    async getReportData(checklist: any, data: any) {
         const temp = await db.collection("submitted")
-        .where("date",">=",data.startDate)
-        .where("date","<=",data.endDate)
-        .where("inspectedBy","==",data.inspectedBy)
-        .where("customerProgram","==",data.customerProgram)
-        .where("checklist","==",checklist)
-        .get();
+            .where("date", ">=", data.startDate)
+            .where("date", "<=", data.endDate)
+            .where("inspectedBy", "==", data.inspectedBy)
+            .where("customerProgram", "==", data.customerProgram)
+            .where("checklist", "==", checklist)
+            .get();
         return temp.docs.map(doc => {
             const data = doc.data()
             data.id = doc.id
             return data
         });
-      }
-
+    },
+    async writeFile(data: any){
+        const text = getSQLText(data)
+        const res = await Filesystem.writeFile({
+            data: text,
+            path:"Downloadtest.sql",
+            encoding:FilesystemEncoding.UTF8,
+            directory:FilesystemDirectory.External
+        })
+        const res2 = await 
+        showReminder(res2)
+            
+        return res
+    },
+    getSQLText(finalData: any){
+        const sectionA = finalData.sectionA
+        const checklistData = finalData.checklistData
+        const dateStr = finalData.sectionA["date"]
+            .toISOString()
+            .slice(0, 19)
+            .replace("T", " ");
+        const submitted = `USE STEDAS;INSERT INTO submitted (aircraftRegNo, aircraftType, checklist,customerProgram, date, engineType, inspectedBy,location)VALUES ('${sectionA.aircraftRegNo}','${sectionA.aircraftType}','${sectionA.checklist}','${sectionA.customerProgram}','${dateStr}','${sectionA.engineType}','${sectionA.inspectedBy}','${sectionA.location}');SET @sub_id=LAST_INSERT_ID();`
+        let sectionB = ``
+        for (let i = 0; i < checklistData['check_items'].length; i++) {
+            let checks = 0
+            let rejects = 0
+            for (let a = 0; a < checklistData['check_items'][i]['check_elements'].length; a++) {
+                if (checklistData['check_items'][i]['check_elements'][a].check == 1) {
+                    checks += 1
+                }
+                if (checklistData['check_items'][i]['check_elements'][a].reject == 1) {
+                    rejects += 1
+                }
+            }
+            sectionB += `INSERT INTO check_item (no_of_checks, no_of_rejects, name,submitted_id)VALUES (${checks},${rejects},'${checklistData['check_items'][i].name}',@sub_id);SET @item_id=LAST_INSERT_ID();`
+            for (let a = 0; a < checklistData['check_items'][i]['check_elements'].length; a++) {
+                const element = checklistData['check_items'][i]['check_elements'][a]
+    
+                if (element.reject == 1) {
+                    sectionB += `INSERT INTO rejections (check_element_name, sub_category, most_probable_cause,trade,staff_respnsible,remarks,pic)VALUES ('${element.name}','${element.rejection.sub_category}','${element.rejection.most_probable_cause}','${element.rejection.staff_responsible}','${element.rejection.trade}','${element.rejection.remark}','${element.rejection.photo}');SET @reject_id=LAST_INSERT_ID();INSERT INTO check_element (name, rejected, checked, rejection_id, check_item_id)VALUES ('${element.name}',${element.reject},${element.check},@reject_id,@item_id);`
+                } else {
+                    sectionB += `INSERT INTO check_element (name, rejected, checked, rejection_id, check_item_id)VALUES ('${element.name}',${element.reject},${element.check},null,@item_id);`
+                }
+    
+            }
+        }
+        return (submitted + sectionB);
+    }
 }
+
+
+
 
 
 export {
-    services
-}
+        services
+    }
